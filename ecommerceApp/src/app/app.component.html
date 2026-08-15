@@ -1,9 +1,24 @@
+<!-- Wrapper to ensure the layout takes the full height of the screen -->
+<div class="d-flex flex-column min-vh-100">
 
-<app-header></app-header>
+  <!-- 1. Header at the very top -->
 
-<div class="container">
-<main class="d-flex flex-column align-items-center justify-content-center py-5">
-    <app-products></app-products>
-  </main>
+
+  <!-- 2. Middle Section (Sidebar + Main Content) -->
+  <div class="d-flex flex-grow-1 flex-nowrap">
+
+    <!-- Sidebar on the left -->
+    <app-header></app-header>
+
+
+    <!-- Main Content area takes up the remaining space -->
+    <main class="flex-grow-1 p-4 bg-light" style="overflow-x: hidden;">
+      <app-products></app-products>
+    </main>
+
+  </div>
+
+  <!-- 3. Footer at the very bottom -->
+  <app-footer></app-footer>
+
 </div>
-<app-footer></app-footer>
