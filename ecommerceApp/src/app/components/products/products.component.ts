@@ -2,10 +2,11 @@ import { Component, NgModule } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { Iproduct } from '../../models/iproduct';
 import { FormsModule } from '@angular/forms';
+import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CurrencyPipe],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
