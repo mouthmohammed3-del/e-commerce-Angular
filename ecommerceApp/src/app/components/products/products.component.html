@@ -1,26 +1,41 @@
 <div class="container-fluid py-4">
- <h5>Total price: {{totalPrice| currency}} </h5>
 
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-bold mb-0">Tech Store</h2>
+  <!-- Header Section: Title, Total Price, and Category Filter -->
+  <div class="d-flex justify-content-between align-items-end mb-4">
+    <div>
+      <h2 class="fw-bold mb-2">Tech Store</h2>
+      <h5 class="text-success mb-0">Total price: {{ totalPrice | currency }}</h5>
+    </div>
+
+    <!-- Bootstrap Category Selector -->
+    <div class="col-md-4 col-lg-3">
+      <label for="categorySelect" class="form-label fw-bold text-muted small">Filter by Category</label>
+      <select id="categorySelect" class="form-select shadow-sm border-0" [(ngModel)]="selectedCatId">
+        <option [value]="0">All Categories</option>
+        @for (cat of categories; track cat.id) {
+          <option [value]="cat.id">{{ cat.name }}</option>
+          <!-- [value]="cat.id": Behind the scenes, it assigns the category's ID (like 1 or 2) as the hidden value of the dropdown option -->
+        }
+      </select>
+    </div>
   </div>
 
+  <!-- Product Grid -->
   <div class="row g-4">
 
-    <!-- Modern Angular @for loop -->
-    @for (product of products; track product.id) {
-      <div class="col-12 col-md-6 col-xl-2">
+    <!-- Modern Angular @for loop using the filteredProducts getter -->
+    @for (product of filteredProducts; track product.id) {
+      <div class="col-12 col-md-6 col-xl-3">
 
         <div class="card h-100 shadow-sm border-0">
 
-          <!-- Dynamic Image Binding -->
-          <!-- We use [src] to read the imgUrl from your TypeScript -->
+          <!-- Dynamic Image -->
           <img [src]="product.imgUrl" [alt]="product.name" class="card-img-top bg-light p-3" style="object-fit: contain; height: 200px;">
 
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-start mb-2">
 
-              <!-- Modern Angular @if for stock status based on your quantity -->
+              <!-- Stock Status Badge -->
               @if (product.quantity > 0) {
                 <span class="badge bg-success">In Stock ({{ product.quantity }})</span>
               } @else {
@@ -32,13 +47,22 @@
 
             <h5 class="card-title fw-bold mb-1">{{ product.name }}</h5>
 
-            <!-- Formatted Price -->
-            <h4 class="fw-bold text-primary mb-3">{{ product.price| currency }}</h4>
+            <!-- Formatted Unit Price -->
+            <h4 class="fw-bold text-primary mb-1">{{ product.price | currency }}</h4>
+
+            <!-- Live Total Price Preview (Shows only if quantity > 1) -->
+            @if (product.purchaseQuantity && product.purchaseQuantity > 1) {
+              <div class="text-success small fw-bold mb-3">
+                Total: {{ (product.purchaseQuantity * product.price) | currency }}
+              </div>
+            } @else {
+              <div class="mb-3" style="height: 20px;"></div>
+            }
           </div>
 
           <div class="card-footer bg-white border-0 pb-4 pt-0">
 
-            <!-- 1. Styled Input Group (Only shows if item is in stock) -->
+            <!-- Quantity Input Group (Only shows if item is in stock) -->
             @if (product.quantity > 0) {
               <div class="input-group mb-3">
                 <span class="input-group-text bg-light">Qty</span>
@@ -46,17 +70,15 @@
                        class="form-control text-center"
                        [(ngModel)]="product.purchaseQuantity"
                        min="1"
-                       [max]="product.quantity" >
+                       [max]="product.quantity">
               </div>
-              <!-- #countInput this Template variable or refrence    -->
             }
 
-            <!-- 2. Fixed 'btn-' typo on this line -->
-            <button class="btn w-100 d-flex justify-content-center align-items-center "
+            <!-- Add to Cart Button -->
+            <button class="btn w-100 d-flex justify-content-center align-items-center"
                     [class.btn-primary]="product.quantity > 0"
                     [class.btn-outline-secondary]="product.quantity === 0"
                     [disabled]="product.quantity === 0"
-
                     (click)="buy(product)">
 
               <i class="bi me-2" [class.bi-cart-plus]="product.quantity > 0" [class.bi-cart-x]="product.quantity === 0"></i>
@@ -68,9 +90,10 @@
 
       </div>
     } @empty {
-      <!-- The @empty block shows automatically if your products array is empty -->
+      <!-- Empty State: Shows if no products match the selected category -->
       <div class="col-12 text-center py-5">
-        <h4 class="text-muted">No products found in the database.</h4>
+        <i class="bi bi-box-seam text-muted" style="font-size: 3rem;"></i>
+        <h4 class="text-muted mt-3">No products found in this category.</h4>
       </div>
     }
 
