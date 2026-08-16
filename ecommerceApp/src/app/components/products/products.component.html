@@ -37,7 +37,19 @@
 
           <div class="card-footer bg-white border-0 pb-4 pt-0">
 
-            <!-- Button logic: Disables and turns gray if quantity is 0 -->
+            <!-- 1. Styled Input Group (Only shows if item is in stock) -->
+            @if (product.quantity > 0) {
+              <div class="input-group mb-3">
+                <span class="input-group-text bg-light">Qty</span>
+                <input type="number"
+                       class="form-control text-center"
+                       [(ngModel)]="product.purchaseQuantity"
+                       min="1"
+                       [max]="product.quantity">
+              </div>
+            }
+
+            <!-- 2. Fixed 'btn-' typo on this line -->
             <button class="btn w-100 d-flex justify-content-center align-items-center"
                     [class.btn-primary]="product.quantity > 0"
                     [class.btn-outline-secondary]="product.quantity === 0"

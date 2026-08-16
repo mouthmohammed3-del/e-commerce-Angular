@@ -5,4 +5,6 @@ export interface Iproduct {
   quantity : number;
   imgUrl : string;
   catId : number;
+  purchaseQuantity?: number;
 }
+
