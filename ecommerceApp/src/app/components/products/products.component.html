@@ -1,4 +1,5 @@
 <div class="container-fluid py-4">
+  <div class="card-body"><h5>Total price: {{totalPrice}} </h5></div>
 
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="fw-bold mb-0">Tech Store</h2>
@@ -45,15 +46,18 @@
                        class="form-control text-center"
                        [(ngModel)]="product.purchaseQuantity"
                        min="1"
-                       [max]="product.quantity">
+                       [max]="product.quantity" >
               </div>
+              <!-- #countInput this Template variable or refrence    -->
             }
 
             <!-- 2. Fixed 'btn-' typo on this line -->
-            <button class="btn w-100 d-flex justify-content-center align-items-center"
+            <button class="btn w-100 d-flex justify-content-center align-items-center "
                     [class.btn-primary]="product.quantity > 0"
                     [class.btn-outline-secondary]="product.quantity === 0"
-                    [disabled]="product.quantity === 0">
+                    [disabled]="product.quantity === 0"
+
+                    (click)="buy(product)">
 
               <i class="bi me-2" [class.bi-cart-plus]="product.quantity > 0" [class.bi-cart-x]="product.quantity === 0"></i>
               {{ product.quantity > 0 ? 'Add to Cart' : 'Sold Out' }}
