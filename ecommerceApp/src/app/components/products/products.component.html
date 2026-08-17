@@ -73,14 +73,14 @@
                        [max]="product.quantity">
               </div>
             }
- 
+
             <!-- Add to Cart Button -->
             <button class="btn w-100 d-flex justify-content-center align-items-center"
                     [class.btn-primary]="product.quantity > 0"
                     [class.btn-outline-secondary]="product.quantity === 0"
                     [disabled]="product.quantity === 0"
                     (click)="buy(product)">
-
+<!-- this class pinding -->
               <i class="bi me-2" [class.bi-cart-plus]="product.quantity > 0" [class.bi-cart-x]="product.quantity === 0"></i>
               {{ product.quantity > 0 ? 'Add to Cart' : 'Sold Out' }}
             </button>
