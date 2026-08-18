@@ -14,7 +14,6 @@
         <option [value]="0">All Categories</option>
         @for (cat of categories; track cat.id) {
           <option [value]="cat.id">{{ cat.name }}</option>
-          <!-- [value]="cat.id": Behind the scenes, it assigns the category's ID (like 1 or 2) as the hidden value of the dropdown option -->
         }
       </select>
     </div>
@@ -29,20 +28,38 @@
 
         <div class="card h-100 shadow-sm border-0">
 
-          <!-- Dynamic Image -->
-          <img [src]="product.imgUrl" [alt]="product.name" class="card-img-top bg-light p-3" style="object-fit: contain; height: 200px;">
+          <!-- Dynamic Image with Style Binding for Opacity -->
+          <img [src]="product.imgUrl"
+               [alt]="product.name"
+               class="card-img-top bg-light p-3"
+               style="object-fit: contain; height: 200px;"
+               [style.opacity]="product.quantity === 0 ? '0.4' : '1'">
 
           <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-2">
 
-              <!-- Stock Status Badge -->
+            <!-- Badges and Stock Progress Bar -->
+            <div class="mb-3">
+              <div class="d-flex justify-content-between align-items-start mb-1">
+
+                @if (product.quantity > 0) {
+                  <span class="badge bg-success">In Stock ({{ product.quantity }})</span>
+                } @else {
+                  <span class="badge bg-danger">Out of Stock</span>
+                }
+
+                <span class="text-muted small">Category: {{ product.catId }}</span>
+              </div>
+
+              <!-- Dynamic Stock Progress Bar (Style Binding) -->
               @if (product.quantity > 0) {
-                <span class="badge bg-success">In Stock ({{ product.quantity }})</span>
-              } @else {
-                <span class="badge bg-danger">Out of Stock</span>
+                <div class="progress" style="height: 4px;">
+                  <!-- Assumes max stock is ~50 for the width percentage math -->
+                  <div class="progress-bar bg-success"
+                       [style.width.%]="(product.quantity / 50) * 100"
+                       [style.background-color]="product.quantity < 10 ? '#ffc107' : ''">
+                  </div>
+                </div>
               }
-
-              <span class="text-muted small">Category: {{ product.catId }}</span>
             </div>
 
             <h5 class="card-title fw-bold mb-1">{{ product.name }}</h5>
@@ -56,6 +73,7 @@
                 Total: {{ (product.purchaseQuantity * product.price) | currency }}
               </div>
             } @else {
+              <!-- Spacer so cards without a total don't jump sizes -->
               <div class="mb-3" style="height: 20px;"></div>
             }
           </div>
@@ -74,13 +92,13 @@
               </div>
             }
 
-            <!-- Add to Cart Button -->
+            <!-- Add to Cart Button (Class Binding & Event Binding) -->
             <button class="btn w-100 d-flex justify-content-center align-items-center"
                     [class.btn-primary]="product.quantity > 0"
                     [class.btn-outline-secondary]="product.quantity === 0"
                     [disabled]="product.quantity === 0"
                     (click)="buy(product)">
-<!-- this class pinding -->
+
               <i class="bi me-2" [class.bi-cart-plus]="product.quantity > 0" [class.bi-cart-x]="product.quantity === 0"></i>
               {{ product.quantity > 0 ? 'Add to Cart' : 'Sold Out' }}
             </button>
