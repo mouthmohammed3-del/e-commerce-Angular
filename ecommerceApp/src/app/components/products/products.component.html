@@ -54,10 +54,11 @@
               @if (product.quantity > 0) {
                 <div class="progress" style="height: 4px;">
                   <!-- Assumes max stock is ~50 for the width percentage math -->
-                  <div class="progress-bar bg-success"
-                       [style.width.%]="(product.quantity / 50) * 100"
-                       [style.background-color]="product.quantity < 10 ? '#ffc107' : ''">
-                  </div>
+                  <div class="progress-bar"
+                  [style.width.%]="(product.quantity / 50) * 100"
+                    [class.bg-success]="product.quantity >= 10"
+                         [class.bg-warning]="product.quantity < 10">
+                   </div>
                 </div>
               }
             </div>
