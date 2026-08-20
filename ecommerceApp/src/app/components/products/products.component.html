@@ -23,7 +23,12 @@
   <div class="row g-4">
 
     <!-- Modern Angular @for loop using the filteredProducts getter -->
+     <!-- track does track the product ID it changed and updated
+
+     When you write track product.id, you are giving Angular a specific "name tag" for every single HTML card it creates
+     -->
     @for (product of filteredProducts; track product.id) {
+
       <div class="col-12 col-md-6 col-xl-3">
 
         <div class="card h-100 shadow-sm border-0">
@@ -42,9 +47,9 @@
               <div class="d-flex justify-content-between align-items-start mb-1">
 
                 @if (product.quantity > 0) {
-                  <span class="badge bg-success">In Stock ({{ product.quantity }})</span>
+                  <span class=" badge bg-success">In Stock ({{ product.quantity }})</span>
                 } @else {
-                  <span class="badge bg-danger">Out of Stock</span>
+                  <span class=" badge bg-danger">Out of Stock</span>
                 }
 
                 <span class="text-muted small">Category: {{ product.catId }}</span>
@@ -59,7 +64,7 @@
                     [class.bg-success]="product.quantity >= 10"
                          [class.bg-warning]="product.quantity < 10">
                    </div>
-                </div>   
+                </div>
               }
             </div>
 
@@ -118,3 +123,13 @@
 
   </div>
 </div>
+
+
+<!-- Notes
+
+Both <ng-container> and <ng-template> are special structural tags in Angular, but they serve completely different purposes.
+
+  Here is the easiest way to think about them: ng-container is an invisible wrapper, while ng-template is a blueprint that waits to be drawn.
+
+
+-->
