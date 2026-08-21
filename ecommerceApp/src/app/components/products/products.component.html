@@ -29,7 +29,7 @@
      -->
     @for (product of filteredProducts; track product.id) {
 
-      <div class="col-12 col-md-6 col-xl-3">
+      <div class="col-12 col-md-6 col-xl-3" appHighlighcard>
 
         <div class="card h-100 shadow-sm border-0">
 
@@ -99,7 +99,7 @@
             }
 
             <!-- Add to Cart Button (Class Binding & Event Binding) -->
-            <button class="btn w-100 d-flex justify-content-center align-items-center"
+            <button class="btn w-100 d-flex justify-content-center align-items-center" appHighlighcard
                     [class.btn-primary]="product.quantity > 0"
                     [class.btn-outline-secondary]="product.quantity === 0"
                     [disabled]="product.quantity === 0"

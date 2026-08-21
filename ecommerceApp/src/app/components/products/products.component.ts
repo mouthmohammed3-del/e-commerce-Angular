@@ -4,10 +4,11 @@ import { Iproduct } from '../../models/iproduct';
 import { FormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
 import { Icategory } from '../../models/icategory';
+import { HighlighcardDirective } from '../../Directives/highlighcard.directive';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [FormsModule,CurrencyPipe],
+  imports: [FormsModule,CurrencyPipe,HighlighcardDirective],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
