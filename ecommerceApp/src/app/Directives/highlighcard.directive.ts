@@ -16,7 +16,8 @@
     }
 
     @HostListener('mouseenter') over() {
-      this.ele.nativeElement.style.backgroundColor = this.externalcolors;
+      // this.ele.nativeElement.style.backgroundColor = this.externalcolors;
+      this.ele.nativeElement.style.backgroundColor = "green";
   }
 
   @HostListener('mouseleave') out() {
