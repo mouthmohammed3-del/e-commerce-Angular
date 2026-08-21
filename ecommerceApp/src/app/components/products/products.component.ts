@@ -72,10 +72,6 @@ export class ProductsComponent {
 
 
   }
-  getCategoryName(id: number): string {
-    // بافتراض أن لديك مصفوفة اسمها categories
-    const category = this.categories.find(cat => cat.id === id);
-    return category ? category.name : 'Unknown';
-  }
+  
 
 }

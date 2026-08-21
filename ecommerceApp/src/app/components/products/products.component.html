@@ -22,10 +22,10 @@
   <!-- Product Grid -->
   <div class="row g-4">
     @for (product of filteredProducts; track product.id) {
-      <div class="col-12 col-md-6 col-xl-3"appHighlighcard>
+      <div class="col-12 col-md-6 col-xl-3" appHighlighcard >
 
         <!-- 🌟 الكلاس هنا: تم إضافة product-card-hover للبطاقة الرئيسية -->
-        <div  class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card-hover" >
+        <div  class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card-hover" externalcolors="red">
 
           <!-- Dynamic Image -->
           <div class="bg-white p-4 d-flex justify-content-center align-items-center" style="height: 220px;" >
@@ -92,7 +92,7 @@
               }
 
               <!-- 🌟 الكلاس هنا: تم إضافة transition-base للزر ليكون ناعماً عند النقر أو التعطيل -->
-              <button class="btn w-100 d-flex justify-content-center align-items-center rounded-3 fw-bold shadow-sm transition-base"appHighlighcard
+              <button class="btn w-100 d-flex justify-content-center align-items-center rounded-3 fw-bold shadow-sm transition-base"
                       [class.btn-primary]="product.quantity > 0"
                       [class.btn-secondary]="product.quantity === 0"
                       [disabled]="product.quantity === 0"
