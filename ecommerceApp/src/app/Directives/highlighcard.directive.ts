@@ -9,7 +9,7 @@ export class HighlighcardDirective {
 
   constructor(ele:ElementRef){
 
-    ele.nativeElement.style.backgroundColor = 'green';
+    ele.nativeElement.style.backgroundColor = 'rgba(var(--bs-success-rgb), var(--bs-bg-opacity))'
   }
 
 
