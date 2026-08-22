@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SquarePipe implements PipeTransform {
 
-  transform(value:number,power:number ):number {
+  transform(value:number,power:number=3 ):number {
 
     return Math.pow(value,power  );
   }

@@ -1,10 +1,10 @@
   // import { style } from '@angular/animations';
-  import { Directive, ElementRef, HostListener, Input, input } from '@angular/core';
+  import { Directive, ElementRef, HostListener, Input, input, OnChanges, SimpleChanges } from '@angular/core';
   @Directive({
     selector: '[appHighlighcard]',
     standalone: true
   })
-  export class HighlighcardDirective {
+  export class HighlighcardDirective implements OnChanges {
 
   @Input() externalcolors:string='red';
 
@@ -14,13 +14,17 @@
       // this.ele.nativeElement.style.backgroundColor = "red";
 
     }
+    ngOnChanges(changes: SimpleChanges): void {
+      this.ele.nativeElement.style.backgroundColor = 'rgba(var(--bs-success-rgb), var(--bs-bg-opacity))';
 
-    @HostListener('mouseenter') over() {
+    }
+
+    @HostListener('mouseover') over() {
       // this.ele.nativeElement.style.backgroundColor = this.externalcolors;
       this.ele.nativeElement.style.backgroundColor = "green";
   }
 
-  @HostListener('mouseleave') out() {
+  @HostListener('mouseout') out() {
       this.ele.nativeElement.style.backgroundColor = "white";
   }
   }
