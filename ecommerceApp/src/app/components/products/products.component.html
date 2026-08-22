@@ -3,6 +3,7 @@
   <!-- Header Section -->
   <div class="d-flex justify-content-between align-items-end mb-4 bg-white p-4 rounded-4 shadow-sm border-0">
     <div>
+      <h4>Today's date : {{myData | date:'short'}}</h4>
       <h2 class="fw-bolder mb-1 text-dark">Tech Store</h2>
       <h5 class="text-success mb-0 fw-bold">Total price: {{ totalPrice | currency }}</h5>
     </div>
@@ -115,3 +116,4 @@
     }
   </div>
 </div>
+<h2>{{num|square:4}}</h2>

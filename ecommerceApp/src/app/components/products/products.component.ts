@@ -2,13 +2,14 @@ import { Component, NgModule } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { Iproduct } from '../../models/iproduct';
 import { FormsModule } from '@angular/forms';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Icategory } from '../../models/icategory';
 import { HighlighcardDirective } from '../../Directives/highlighcard.directive';
+import { SquarePipe } from '../../pipes/square.pipe';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [FormsModule,CurrencyPipe,HighlighcardDirective],
+  imports: [FormsModule,CurrencyPipe,HighlighcardDirective,DatePipe,SquarePipe],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -17,7 +18,9 @@ export class ProductsComponent {
   products : Iproduct[];
   categories:any[];
   selectedCatId: number = 0;
- totalPrice: number=0
+ totalPrice: number=0;
+ num : number =4;
+ myData:Date=new Date()
   constructor(){
     this.products = [
       {id:1,name:'Dell laptop 1',price:100,quantity:8,imgUrl:'assets/lee-campbell-GI6L2pkiZgQ-unsplash.jpg',catId:1,purchaseQuantity: 3},
@@ -59,6 +62,7 @@ export class ProductsComponent {
     // Deduct the stock
     product.quantity -= count;
 
+
     // Calculate the price
     this.totalPrice += count  * product.price;
     alert(`Bought ${count} of ${product.name} for $${this.totalPrice}`);
@@ -72,6 +76,6 @@ export class ProductsComponent {
 
 
   }
-  
+
 
 }
