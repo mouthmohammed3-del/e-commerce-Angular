@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, Input, input, NgModule, OnChanges, SimpleChanges } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { Iproduct } from '../../models/iproduct';
 import { FormsModule } from '@angular/forms';
@@ -6,6 +6,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Icategory } from '../../models/icategory';
 import { HighlighcardDirective } from '../../Directives/highlighcard.directive';
 import { SquarePipe } from '../../pipes/square.pipe';
+import { OrderComponent } from '../order/order.component';
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -13,14 +14,16 @@ import { SquarePipe } from '../../pipes/square.pipe';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnChanges {
 
   products : Iproduct[];
-  // categories:any[];
+
+  filteredProducts!:Iproduct[];
   // selectedCatId: number = 0;
-//  totalPrice: number=0;
-//  num : number =4;
-//  myData:Date=new Date()
+  totalPrice: number=0;
+ num : number =4;
+ @Input() recievedCatId:number=0
+  myData:Date=new Date()
   constructor(){
     this.products = [
       {id:1,name:'Dell laptop 1',price:100,quantity:8,imgUrl:'assets/lee-campbell-GI6L2pkiZgQ-unsplash.jpg',catId:1,purchaseQuantity: 3},
@@ -29,53 +32,69 @@ export class ProductsComponent {
       {id:4,name:'oppo',price:400,quantity:40,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:4,purchaseQuantity: 1},
       {id:5,name:'samsung',price:500,quantity:0,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:5,purchaseQuantity: 1},
     ]
-    // this.categories = [
-    //   { id: 1, name: 'Laptops' },
-    //   { id: 2, name: 'Smartphones' },
-    //   { id: 3, name: 'Tablets' },
-    //   { id: 4, name: 'Accessories' },
-    //   { id: 5, name: 'Televisions' }
-    // ];
+
+    this.filteredProducts = this.products;
   }
-  /////////filtter///////////
+  ngOnChanges() {
+    this.filterProducts()
+  }
 
-     get filteredProducts(): Iproduct[] {
-//
-//       // Convert the selected ID to a number (HTML select sometimes turns it into a string)
-//       // let categoryId = Number(this.selectedCatId);
-//
-//       // If 0 ("All Categories") is selected, return the whole original array
-//       // if (categoryId === 0) {
-         return this.products;
-//       }
-
-      // Otherwise, use JavaScript's built-in .filter() to return only matches
-      // return this.products.filter(product => product.catId === categoryId);
-      // product.catId === categoryId: It asks a true/false question: "Does this product's category ID match the one the user selected?"
-///////////////////////////
-// }
-//   buy(product: Iproduct){
-//     let count = product.purchaseQuantity ?? 1;
-//
-//   if (count > 0 && product.quantity >= count) {
-//
-//     // Deduct the stock
-//     product.quantity -= count;
-//
-//
-//     // Calculate the price
-//     this.totalPrice += count  * product.price;
-//     alert(`Bought ${count} of ${product.name} for $${this.totalPrice}`);
-//
-//     // Reset the input back to 1
-//     product.purchaseQuantity = 1;
-
-  // } else {
-  //   alert('Invalid quantity or not enough stock!');
+  // filterProducts() {
+  //   // 1. If "All Categories" (0) is selected, show everything.
+  //   if (this.recievedCatId == 0) {
+  //     this.filteredProducts = this.products;
+  //   }
+  //   // 2. Otherwise, filter the original array and SAVE it to filteredProducts.
+  //   else {
+  //     this.filteredProducts = this.products.filter(
+  //       (product) => product.catId == this.recievedCatId
+  //     );
+  //   }
   // }
+  /////////filtter///////////
+//
+     filterProducts(){
+  //
+//   //       // Convert the selected ID to a number (HTML select sometimes turns it into a string)
+          //  let categoryId = Number(this.recievedCatId);
+//   //
+//   //       // If 0 ("All Categories") is selected, return the whole original array
+          if ( this.recievedCatId==0) {
+           this.filteredProducts = this.products;
+         }else{
+          this.filteredProducts=this.products.filter((product) => product.catId == this.recievedCatId);
+
+         }
+
+//
+//         // Otherwise, use JavaScript's built-in .filter() to return only matches
+
+        // product.catId === categoryId: It asks a true/false question: "Does this product's category ID match the one the user selected?"
+  ///////////////////////////
+  }
+  buy(product: Iproduct){
+        let count = product.purchaseQuantity ?? 1;
+
+  if (count > 0 && product.quantity >= count) {
+
+    // Deduct the stock
+    product.quantity -= count;
+
+
+    // Calculate the price
+    this.totalPrice += count  * product.price;
+    alert(`Bought ${count} of ${product.name} for $${this.totalPrice}`);
+
+    // Reset the input back to 1
+    product.purchaseQuantity = 1;
+
+  } else {
+    alert('Invalid quantity or not enough stock!');
+  }
 
 
    }
 
 
-}
+ }
+

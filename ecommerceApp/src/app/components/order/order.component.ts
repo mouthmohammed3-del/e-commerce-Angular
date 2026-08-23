@@ -7,7 +7,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [FormsModule, ProductsComponent,CurrencyPipe,DatePipe],
+  imports: [FormsModule, ProductsComponent, CurrencyPipe,DatePipe],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
@@ -17,7 +17,7 @@ export class OrderComponent {
   selectedCatId: number = 0;
   totalPrice: number=0;
   num : number =4;
-  myData:Date=new Date()
+  MyData:Date=new Date()
   /**
    *
    */
@@ -32,4 +32,6 @@ export class OrderComponent {
     ];
 
   }
+
+
 }
