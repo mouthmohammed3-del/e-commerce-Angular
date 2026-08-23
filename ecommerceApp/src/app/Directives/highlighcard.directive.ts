@@ -7,7 +7,7 @@
   export class HighlighcardDirective implements OnChanges {
 
   @Input() externalcolors:string='red';
-
+  @Input() defaultColor :string="rgba(var(--bs-success-rgb), var(--bs-bg-opacity))"
     constructor( private ele :ElementRef){
 
     //  this.ele.nativeElement.style.backgroundColor = 'rgba(var(--bs-success-rgb), var(--bs-bg-opacity))';
@@ -15,7 +15,7 @@
 
     }
     ngOnChanges(changes: SimpleChanges): void {
-      this.ele.nativeElement.style.backgroundColor = 'rgba(var(--bs-success-rgb), var(--bs-bg-opacity))';
+      this.ele.nativeElement.style.backgroundColor = this.defaultColor;
 
     }
 
