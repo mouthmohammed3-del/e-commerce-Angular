@@ -2,12 +2,12 @@ import { Component, NgModule } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Icategory } from '../../models/icategory';
 import { ProductsComponent } from "../products/products.component";
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [FormsModule, ProductsComponent,CurrencyPipe],
+  imports: [FormsModule, ProductsComponent,CurrencyPipe,DatePipe],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
