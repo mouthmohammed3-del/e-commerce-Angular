@@ -1,4 +1,4 @@
-import { Component, Input, input, NgModule, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, input, NgModule, OnChanges, Output, output, SimpleChanges } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { Iproduct } from '../../models/iproduct';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +24,9 @@ export class ProductsComponent implements OnChanges {
  num : number =4;
  @Input() recievedCatId:number=0
   myData:Date=new Date()
+  //define event
+@Output() onTotalPriceChanged:EventEmitter<number>
+
   constructor(){
     this.products = [
       {id:1,name:'Dell laptop 1',price:100,quantity:8,imgUrl:'assets/lee-campbell-GI6L2pkiZgQ-unsplash.jpg',catId:1,purchaseQuantity: 3},
@@ -34,6 +37,8 @@ export class ProductsComponent implements OnChanges {
     ]
 
     this.filteredProducts = this.products;
+
+    this.onTotalPriceChanged=new EventEmitter<number>()
   }
   ngOnChanges() {
     this.filterProducts()
@@ -73,6 +78,7 @@ export class ProductsComponent implements OnChanges {
   ///////////////////////////
   }
   buy(product: Iproduct){
+
         let count = product.purchaseQuantity ?? 1;
 
   if (count > 0 && product.quantity >= count) {
@@ -83,6 +89,9 @@ export class ProductsComponent implements OnChanges {
 
     // Calculate the price
     this.totalPrice += count  * product.price;
+
+    //2- fire  event
+    this.onTotalPriceChanged.emit(this.totalPrice)
     alert(`Bought ${count} of ${product.name} for $${this.totalPrice}`);
 
     // Reset the input back to 1

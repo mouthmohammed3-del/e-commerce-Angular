@@ -15,9 +15,10 @@ export class OrderComponent {
 
   categories:any[];
   selectedCatId: number = 0;
-  totalPrice: number=0;
+  recivedtotalPrice: number=0;
   num : number =4;
   MyData:Date=new Date()
+
   /**
    *
    */
@@ -33,5 +34,7 @@ export class OrderComponent {
 
   }
 
-
+  CalcTotalPrice(top:number){
+    this.recivedtotalPrice=top
+  }
 }
