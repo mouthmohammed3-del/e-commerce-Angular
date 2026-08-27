@@ -14,11 +14,19 @@ export class NationalIdDatePipe implements PipeTransform {
     if (idStr.length !== 14) {
       return 'Invalid ID';
     }
+    //29305151234567
     // Extract parts using substring
-    const centuryDigit = idStr.substring(0, 1);
-    const yearDigits = idStr.substring(1, 3);
-    const month = idStr.substring(3, 5);
-    const day = idStr.substring(5, 7);
+    const centuryDigit = idStr.substring(0, 1); //2
+    const yearDigits = idStr.substring(1, 3);//93
+    const month = idStr.substring(3, 5);//05
+    const day = idStr.substring(5, 7);//15
+
+// 29305151234567
+// │││││││
+// ││││││└── Day → 15
+// ││││└──── Month → 05
+// │└└────── Year → 93
+// └──────── Century → 2
 
     // Calculate the full year based on the century digit
     const centuryPrefix = centuryDigit === '2' ? '19' : (centuryDigit === '3' ? '20' : '');
