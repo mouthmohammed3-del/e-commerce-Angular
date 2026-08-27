@@ -6,8 +6,37 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NationalIdDatePipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+
+  transform(idNumber: string | number, formatPart: 'YY' | 'MM' | 'DD' | 'FullDate'): string {
+    const idStr = idNumber.toString();
+
+    // Validate length before processing
+    if (idStr.length !== 14) {
+      return 'Invalid ID';
+    }
+    // Extract parts using substring
+    const centuryDigit = idStr.substring(0, 1);
+    const yearDigits = idStr.substring(1, 3);
+    const month = idStr.substring(3, 5);
+    const day = idStr.substring(5, 7);
+
+    // Calculate the full year based on the century digit
+    const centuryPrefix = centuryDigit === '2' ? '19' : (centuryDigit === '3' ? '20' : '');
+    const fullYear = centuryPrefix + yearDigits;
+
+    // Return the requested part using a switch statement
+    switch (formatPart) {
+      case 'YY':
+        return fullYear;
+      case 'MM':
+        return month;
+      case 'DD':
+        return day;
+      case 'FullDate':
+        return `${day}-${month}-${fullYear}`;
+      default:
+        return 'Invalid Format Parameter';
+    }
   }
 
 }
