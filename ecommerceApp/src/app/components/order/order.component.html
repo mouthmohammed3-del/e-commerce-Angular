@@ -10,10 +10,12 @@
 </div>
 </div>
 <div>
+  <!--this is event has a value its onTotalPriceChanged  -->
   <app-products [recievedCatId]="selectedCatId" (onTotalPriceChanged)="CalcTotalPrice($event)"></app-products>
 </div>
 
 <div>
+
   <h4>Today's date : {{ MyData }}</h4>
   <h2 class="fw-bolder mb-1 text-dark">Tech Store</h2>
   <h5 class="text-success mb-0 fw-bold">Total price: {{ recivedtotalPrice | currency }}</h5>
