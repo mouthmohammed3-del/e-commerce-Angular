@@ -3,11 +3,14 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { Icategory } from '../../models/icategory';
 import { ProductsComponent } from "../products/products.component";
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { Pipe, PipeTransform } from '@angular/core';
+import { pipe } from 'rxjs';
+import { NationalIdDatePipe } from "../../pipes/national-id-date.pipe";
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [FormsModule, ProductsComponent, CurrencyPipe,DatePipe],
+  imports: [FormsModule, ProductsComponent, CurrencyPipe, DatePipe, NationalIdDatePipe],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })

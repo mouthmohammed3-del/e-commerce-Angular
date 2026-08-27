@@ -19,4 +19,10 @@
   <h4>Today's date : {{ MyData }}</h4>
   <h2 class="fw-bolder mb-1 text-dark">Tech Store</h2>
   <h5 class="text-success mb-0 fw-bold">Total price: {{ recivedtotalPrice | currency }}</h5>
+
+  <!--  -->
+  <p>Year: {{ '29909011509345' | nationalIdDate:'YY' }}</p>
+<!-- Outputs: 1999 -->
+
+<p>Full Date: {{ '29909011509345' | nationalIdDate:'FullDate' }}</p>
 </div>

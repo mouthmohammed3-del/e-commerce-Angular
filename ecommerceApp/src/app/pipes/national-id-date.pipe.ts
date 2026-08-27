@@ -28,7 +28,7 @@ export class NationalIdDatePipe implements PipeTransform {
 // │└└────── Year → 93
 // └──────── Century → 2
 
-    // Calculate the full year based on the century digit
+    // Calculate the full year based on the century digit using Ternary Operator
     const centuryPrefix = centuryDigit === '2' ? '19' : (centuryDigit === '3' ? '20' : '');
     const fullYear = centuryPrefix + yearDigits;
 
