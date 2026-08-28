@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgModule, ViewChild, viewChild } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Icategory } from '../../models/icategory';
 import { ProductsComponent } from "../products/products.component";
@@ -14,13 +14,15 @@ import { NationalIdDatePipe } from "../../pipes/national-id-date.pipe";
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
-export class OrderComponent {
+export class OrderComponent  implements AfterViewInit{
 
   categories:any[];
   selectedCatId: number = 0;
   recivedtotalPrice: number=0;
   num : number =4;
   MyData:Date=new Date()
+
+@ViewChild('userNameInp') myInp!:ElementRef;//non null assertion operator
 
   /**
    *
@@ -32,9 +34,12 @@ export class OrderComponent {
       { id: 2, name: 'Smartphones' },
       { id: 3, name: 'Tablets' },
       { id: 4, name: 'Accessories' },
-      { id: 5, name: 'Televisions' }
+      { id: 5, name: 'Televisions' },
     ];
 
+  }
+  ngAfterViewInit(): void {
+    this.myInp.nativeElement.value="muath";
   }
 
   CalcTotalPrice(top:number){

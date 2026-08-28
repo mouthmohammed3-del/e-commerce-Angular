@@ -10,7 +10,11 @@ import { OrderComponent } from '../order/order.component';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [FormsModule,CurrencyPipe,HighlighcardDirective,DatePipe,SquarePipe],
+  imports: [FormsModule,
+    CurrencyPipe,
+    HighlighcardDirective,
+    DatePipe,
+    SquarePipe],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
