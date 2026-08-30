@@ -7,6 +7,7 @@ import { Icategory } from '../../models/icategory';
 import { HighlighcardDirective } from '../../Directives/highlighcard.directive';
 import { SquarePipe } from '../../pipes/square.pipe';
 import { OrderComponent } from '../order/order.component';
+import { StaticProductsService } from '../../services/static-products.service';
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -31,21 +32,22 @@ export class ProductsComponent implements OnChanges {
   //define event
 @Output() onTotalPriceChanged:EventEmitter<number>
 
-  constructor(){
-    this.products = [
-      {id:1,name:'Dell laptop 1',price:100,quantity:8,imgUrl:'assets/lee-campbell-GI6L2pkiZgQ-unsplash.jpg',catId:1,purchaseQuantity: 3},
-      {id:2,name:'Hp laptop',price:200,quantity:50,imgUrl:'assets/lauren-mancke-aOC7TSLb1o8-unsplash.jpg',catId:1,purchaseQuantity: 1},
-      {id:3,name:'Iphone',price:300,quantity:30,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:3,purchaseQuantity: 1},
-      {id:4,name:'oppo',price:400,quantity:40,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:4,purchaseQuantity: 1},
-      {id:5,name:'samsung',price:500,quantity:0,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:5,purchaseQuantity: 1},
-    ]
+  constructor(private _StaticProductsService:StaticProductsService){
+    this.products = this._StaticProductsService.getAllproducts()
+    // this.products = [
+    //   {id:1,name:'Dell laptop 1',price:100,quantity:8,imgUrl:'assets/lee-campbell-GI6L2pkiZgQ-unsplash.jpg',catId:1,purchaseQuantity: 3},
+    //   {id:2,name:'Hp laptop',price:200,quantity:50,imgUrl:'assets/lauren-mancke-aOC7TSLb1o8-unsplash.jpg',catId:1,purchaseQuantity: 1},
+    //   {id:3,name:'Iphone',price:300,quantity:30,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:3,purchaseQuantity: 1},
+    //   {id:4,name:'oppo',price:400,quantity:40,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:4,purchaseQuantity: 1},
+    //   {id:5,name:'samsung',price:500,quantity:0,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:5,purchaseQuantity: 1},
+    // ]
 
     this.filteredProducts = this.products;
 
     this.onTotalPriceChanged=new EventEmitter<number>()
   }
   ngOnChanges() {
-    this.filterProducts()
+    this.filteredProducts = this._StaticProductsService.getproductsByCatId(this.recievedCatId)
   }
 
   // filterProducts() {
@@ -62,25 +64,25 @@ export class ProductsComponent implements OnChanges {
   // }
   /////////filtter///////////
 //
-     filterProducts(){
-  //
-//   //       // Convert the selected ID to a number (HTML select sometimes turns it into a string)
-          //  let categoryId = Number(this.recievedCatId);
+//      filterProducts(){
 //   //
-//   //       // If 0 ("All Categories") is selected, return the whole original array
-          if ( this.recievedCatId==0) {
-           this.filteredProducts = this.products;
-         }else{
-          this.filteredProducts=this.products.filter((product) => product.catId == this.recievedCatId);
-
-         }
+// //   //       // Convert the selected ID to a number (HTML select sometimes turns it into a string)
+//           //  let categoryId = Number(this.recievedCatId);
+// //   //
+// //   //       // If 0 ("All Categories") is selected, return the whole original array
+//           if ( this.recievedCatId==0) {
+//            this.filteredProducts = this.products;
+//          }else{
+//           this.filteredProducts=this.products.filter((product) => product.catId == this.recievedCatId);
+// 
+//          }
 
 //
 //         // Otherwise, use JavaScript's built-in .filter() to return only matches
 
         // product.catId === categoryId: It asks a true/false question: "Does this product's category ID match the one the user selected?"
   ///////////////////////////
-  }
+//  }
   buy(product: Iproduct){
 
         let count = product.purchaseQuantity ?? 1;
