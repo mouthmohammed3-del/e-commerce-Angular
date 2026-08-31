@@ -8,7 +8,7 @@ import { OrderComponent } from './components/order/order.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FooterComponent, HeaderComponent,OrderComponent],
+  imports: [FooterComponent, HeaderComponent, OrderComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
