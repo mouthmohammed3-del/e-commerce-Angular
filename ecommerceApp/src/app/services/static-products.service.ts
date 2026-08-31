@@ -3,12 +3,13 @@ import { Iproduct } from '../models/iproduct';
 import { Icategory } from '../models/icategory';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' //This makes the service available everywhere
+
 })
 export class StaticProductsService {
 
 products:Iproduct[];
-Categorys:Icategory[];
+Categorys!:Icategory[];
 
   constructor() {
     this.products = [
@@ -30,7 +31,12 @@ Categorys:Icategory[];
   }
 
   getproductsByCatId(catid:number):Iproduct[]{
-    return this.products.filter((prd)=>prd.catId==catid)
+    if(catid == 0){
+      return this.products;
+    }
+    else{
+    return this.products.filter((prd)=>prd.catId == catid)
+    }
   }
 
   // addproducts(){

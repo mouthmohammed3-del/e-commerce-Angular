@@ -50,18 +50,18 @@ export class ProductsComponent implements OnChanges {
     this.filteredProducts = this._StaticProductsService.getproductsByCatId(this.recievedCatId)
   }
 
-  // filterProducts() {
-  //   // 1. If "All Categories" (0) is selected, show everything.
-  //   if (this.recievedCatId == 0) {
-  //     this.filteredProducts = this.products;
-  //   }
-  //   // 2. Otherwise, filter the original array and SAVE it to filteredProducts.
-  //   else {
-  //     this.filteredProducts = this.products.filter(
-  //       (product) => product.catId == this.recievedCatId
-  //     );
-  //   }
-  // }
+  filterProducts() {
+    // 1. If "All Categories" (0) is selected, show everything.
+    if (this.recievedCatId == 0) {
+      this.filteredProducts = this.products;
+    }
+    // 2. Otherwise, filter the original array and SAVE it to filteredProducts.
+    else {
+      this.filteredProducts = this.products.filter(
+        (product) => product.catId == this.recievedCatId
+      );
+    }
+  }
   /////////filtter///////////
 //
 //      filterProducts(){
@@ -74,7 +74,7 @@ export class ProductsComponent implements OnChanges {
 //            this.filteredProducts = this.products;
 //          }else{
 //           this.filteredProducts=this.products.filter((product) => product.catId == this.recievedCatId);
-// 
+//
 //          }
 
 //
