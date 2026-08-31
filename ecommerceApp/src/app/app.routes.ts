@@ -11,6 +11,7 @@ export const routes: Routes = [
   {path:'Products',component:ProductsComponent},
   {path:'Dashboard',component:ProductsComponent},
   {path:'Orders',component:OrderComponent},
+  // maust by the last one  
   {path:'**',component:NotFoundComponent}
 ];
 
