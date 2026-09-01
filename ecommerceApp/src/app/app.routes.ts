@@ -11,12 +11,16 @@ export const routes: Routes = [
   {path:'Dashboard',component:HomeComponent  },
   {path:'Home',component:HomeComponent,children:[
     {path:"Products",component: ProductsComponent},
+
   ]},
   {path:'Products',component:ProductsComponent},
   {path:'About',component: AboutUsComponent,
     children:[
-    {path:'Vision',component:VisionComponent},
-    {path:'Values',component:ValuesComponent},
+
+      // {path:'',component:VisionComponent},
+      {path:'',redirectTo:'About/Vision',pathMatch:'full'},//
+      {path:'Vision',component:VisionComponent},
+      {path:'Values',component:ValuesComponent},
   ],
 },
   {path:'Orders',component:OrderComponent},
