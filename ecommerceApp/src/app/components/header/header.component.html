@@ -2,7 +2,7 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-white border-end shadow-sm vh-100 position-sticky top-0" style="width: 280px;">
 
   <!-- Brand / Logo Area -->
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none" routerLinkActive="bg-success">
     <i class="bi bi-shop fs-4 text-primary me-2"></i>
     <span class="fs-4 fw-bolder text-primary">ShopPro</span>
   </a>
@@ -13,14 +13,14 @@
 
     <!-- Standard Link with Icon -->
     <li class="nav-item">
-      <a routerLink="Home" class="nav-link active d-flex align-items-center bg-success" aria-current="page" >
+      <a routerLink="Home" class="nav-link  d-flex align-items-center" aria-current="page" routerLinkActive="bg-success" >
         <i class="bi bi-speedometer2 me-3 fs-5"></i> Dashboard
       </a>
     </li>
 
     <!-- Link with a Notification Badge -->
     <li>
-      <a href="#" class="nav-link link-dark d-flex align-items-center justify-content-between">
+      <a href="/Orders" class="nav-link link-dark d-flex align-items-center justify-content-between" routerLinkActive="bg-success">
         <div>
           <i class="bi bi-box-seam me-3 fs-5"></i> Orders
         </div>
@@ -30,7 +30,7 @@
 
     <!-- PRO FEATURE: Collapsible Sub-Menu -->
     <li>
-      <a routerLink="/Products" data-bs-toggle="collapse" class="nav-link link-dark d-flex align-items-center justify-content-between" role="button" aria-expanded="false" aria-controls="productsCollapse">
+      <a routerLink="/Products" data-bs-toggle="collapse" class="nav-link link-dark d-flex align-items-center justify-content-between" role="button" aria-expanded="false" aria-controls="productsCollapse" routerLinkActive="bg-success">
         <div>
           <i class="bi bi-tags me-3 fs-5"></i> Products
         </div>
@@ -46,17 +46,17 @@
     </li>
 
     <li>
-      <a href="#" class="nav-link link-dark d-flex align-items-center">
+      <a href="#" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success">
         <i class="bi bi-people me-3 fs-5"></i> Customers
       </a>
     </li>
     <li>
-      <a routerLink="/AboutUs" class="nav-link link-dark d-flex align-items-center">
-        <i class="bi bi-people me-3 fs-5"></i> About
+      <a routerLink="/About" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success">
+        <i class="bi bi-people me-3 fs-5"></i> AboutUs
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link link-dark d-flex align-items-center">
+      <a href="/Analytics" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success">
         <i class="bi bi-bar-chart me-3 fs-5"></i> Analytics
       </a>
     </li>
