@@ -1,8 +1,7 @@
-<!-- Added 'shadow-sm' for a premium lifted look, and 'position-sticky top-0' so it stays visible when scrolling -->
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-white border-end shadow-sm vh-100 position-sticky top-0" style="width: 280px;">
 
-  <!-- Brand / Logo Area -->
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none" routerLinkActive="bg-success">
+  <!-- Brand / Logo Area (تم إزالة routerLinkActive من هنا لكي لا يتلون الشعار بالأخضر) -->
+  <a routerLink="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
     <i class="bi bi-shop fs-4 text-primary me-2"></i>
     <span class="fs-4 fw-bolder text-primary">ShopPro</span>
   </a>
@@ -11,16 +10,18 @@
   <!-- Main Navigation List -->
   <ul class="nav nav-pills flex-column mb-auto gap-1">
 
-    <!-- Standard Link with Icon -->
+    <!-- Dashboard -->
     <li class="nav-item">
-      <a routerLink="Home" class="nav-link  d-flex align-items-center" aria-current="page" routerLinkActive="bg-success" >
+      <!-- تم إضافة / قبل Home، والـ link-dark لتوحيد اللون -->
+      <a routerLink="/Home" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success text-white" >
         <i class="bi bi-speedometer2 me-3 fs-5"></i> Dashboard
       </a>
     </li>
 
-    <!-- Link with a Notification Badge -->
+    <!-- Orders -->
     <li>
-      <a href="/Orders" class="nav-link link-dark d-flex align-items-center justify-content-between" routerLinkActive="bg-success">
+      <!-- تم تغيير href إلى routerLink -->
+      <a routerLink="/Orders" class="nav-link link-dark d-flex align-items-center justify-content-between" routerLinkActive="bg-success text-white">
         <div>
           <i class="bi bi-box-seam me-3 fs-5"></i> Orders
         </div>
@@ -28,35 +29,33 @@
       </a>
     </li>
 
-    <!-- PRO FEATURE: Collapsible Sub-Menu -->
+    <!-- Products -->
     <li>
-      <a routerLink="/Products" data-bs-toggle="collapse" class="nav-link link-dark d-flex align-items-center justify-content-between" role="button" aria-expanded="false" aria-controls="productsCollapse" routerLinkActive="bg-success">
+      <a routerLink="/Products" class="nav-link link-dark d-flex align-items-center justify-content-between" routerLinkActive="bg-success text-white">
         <div>
           <i class="bi bi-tags me-3 fs-5"></i> Products
         </div>
-        <i class="bi bi-chevron-down small text-muted"></i>
       </a>
-      <div class="collapse" id="productsCollapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ms-5 mt-2">
-          <li><a href="#" class="nav-link link-dark py-1">Add New Product</a></li>
-          <li><a href="#" class="nav-link link-dark py-1">Manage Categories</a></li>
-          <li><a href="#" class="nav-link link-dark py-1">Inventory Levels</a></li>
-        </ul>
-      </div>
     </li>
 
+    <!-- Customers -->
     <li>
-      <a href="#" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success">
+      <a routerLink="/Customers" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success text-white">
         <i class="bi bi-people me-3 fs-5"></i> Customers
       </a>
     </li>
+
+    <!-- About Us -->
     <li>
-      <a routerLink="/About" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success">
-        <i class="bi bi-people me-3 fs-5"></i> AboutUs
+      <a routerLink="/About" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success text-white">
+        <i class="bi bi-info-circle me-3 fs-5"></i> AboutUs
       </a>
     </li>
+
+    <!-- Analytics -->
     <li>
-      <a href="/Analytics" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success">
+      <!-- تم تغيير href إلى routerLink -->
+      <a routerLink="/Analytics" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success text-white">
         <i class="bi bi-bar-chart me-3 fs-5"></i> Analytics
       </a>
     </li>
@@ -66,7 +65,7 @@
 
   <!-- PRO FEATURE: User Profile Dropdown Pinned to Bottom -->
   <div class="dropdown">
-    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+    <a href="/Admin User" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false" routerLinkActive="">
       <!-- Swapped the 'A' avatar box for a clean user icon -->
       <i class="bi bi-person-circle fs-3 text-secondary me-2"></i>
       <strong>Admin User</strong>
