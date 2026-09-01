@@ -8,6 +8,7 @@ import { HighlighcardDirective } from '../../Directives/highlighcard.directive';
 import { SquarePipe } from '../../pipes/square.pipe';
 import { OrderComponent } from '../order/order.component';
 import { StaticProductsService } from '../../services/static-products.service';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -15,7 +16,7 @@ import { StaticProductsService } from '../../services/static-products.service';
     CurrencyPipe,
     HighlighcardDirective,
     DatePipe,
-    SquarePipe],
+    SquarePipe,RouterLink,RouterOutlet],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -32,7 +33,10 @@ export class ProductsComponent implements OnChanges {
   //define event
 @Output() onTotalPriceChanged:EventEmitter<number>
 
-  constructor(private _StaticProductsService:StaticProductsService){
+  constructor(private _StaticProductsService:StaticProductsService,
+  private router:Router
+
+  ){
     this.products = this._StaticProductsService.getAllproducts()
     // this.products = [
     //   {id:1,name:'Dell laptop 1',price:100,quantity:8,imgUrl:'assets/lee-campbell-GI6L2pkiZgQ-unsplash.jpg',catId:1,purchaseQuantity: 3},
@@ -109,6 +113,15 @@ export class ProductsComponent implements OnChanges {
 
 
    }
+
+   navigateToDetails() {
+
+    // Navigate to the details page
+    // this.router.navigateByUrl('/Details');
+    this.router.navigate(['/Details']);
+
+  }
+
 
 
  }

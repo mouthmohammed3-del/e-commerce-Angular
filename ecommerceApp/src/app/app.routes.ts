@@ -6,6 +6,7 @@ import { OrderComponent } from './components/order/order.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { VisionComponent } from './components/vision/vision.component';
 import { ValuesComponent } from './components/values/values.component';
+import { DetailsComponent } from './components/details/details.component';
 
 export const routes: Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
@@ -13,7 +14,9 @@ export const routes: Routes = [
   {path:'Home',component:HomeComponent,children:[
     {path:"Products",component: ProductsComponent},
 
+
   ]},
+  {path:'Details',component: DetailsComponent},
   {path:'Products',component:ProductsComponent},
   {path:'About',component: AboutUsComponent,
     children:[
