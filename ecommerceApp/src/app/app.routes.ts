@@ -8,6 +8,7 @@ import { VisionComponent } from './components/vision/vision.component';
 import { ValuesComponent } from './components/values/values.component';
 
 export const routes: Routes = [
+  {path:'',redirectTo:'Home',pathMatch:'full'},
   {path:'Dashboard',component:HomeComponent  },
   {path:'Home',component:HomeComponent,children:[
     {path:"Products",component: ProductsComponent},
