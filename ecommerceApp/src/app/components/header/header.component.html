@@ -13,7 +13,7 @@
 
     <!-- Standard Link with Icon -->
     <li class="nav-item">
-      <a href="#" class="nav-link active d-flex align-items-center bg-success" aria-current="page" >
+      <a routerLink="Home" class="nav-link active d-flex align-items-center bg-success" aria-current="page" >
         <i class="bi bi-speedometer2 me-3 fs-5"></i> Dashboard
       </a>
     </li>
@@ -30,7 +30,7 @@
 
     <!-- PRO FEATURE: Collapsible Sub-Menu -->
     <li>
-      <a href="#productsCollapse" data-bs-toggle="collapse" class="nav-link link-dark d-flex align-items-center justify-content-between" role="button" aria-expanded="false" aria-controls="productsCollapse">
+      <a routerLink="/Products" data-bs-toggle="collapse" class="nav-link link-dark d-flex align-items-center justify-content-between" role="button" aria-expanded="false" aria-controls="productsCollapse">
         <div>
           <i class="bi bi-tags me-3 fs-5"></i> Products
         </div>
@@ -48,6 +48,11 @@
     <li>
       <a href="#" class="nav-link link-dark d-flex align-items-center">
         <i class="bi bi-people me-3 fs-5"></i> Customers
+      </a>
+    </li>
+    <li>
+      <a routerLink="/AboutUs" class="nav-link link-dark d-flex align-items-center">
+        <i class="bi bi-people me-3 fs-5"></i> About
       </a>
     </li>
     <li>
