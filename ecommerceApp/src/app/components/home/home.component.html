@@ -1,21 +1,20 @@
-<!-- حاوية الشاشة الرئيسية -->
+
 <div class="container-fluid py-5 bg-light min-vh-100 d-flex flex-column justify-content-center align-items-center">
 
   <div class="text-center">
-    <!-- أيقونة ترحيبية -->
+
     <i class="bi bi-shop text-primary mb-3" style="font-size: 5rem;"></i>
 
-    <!-- عنوان المتجر -->
+
     <h1 class="display-4 fw-bolder text-dark mb-3">Welcome to ShopPro</h1>
     <p class="lead text-muted mb-4">Discover the best products at unbeatable prices.</p>
 
-    <!-- أزرار للتوجيه السريع -->
     <div class="d-flex gap-3 justify-content-center">
-      <!-- زر يوجه المستخدم لصفحة المنتجات -->
       <a routerLink="/Products" class="btn btn-primary btn-lg px-4 rounded-pill shadow-sm">
         <i class="bi bi-cart me-2"></i> Shop Now
       </a>
-      <!-- زر يوجه المستخدم لصفحة من نحن -->
+      <router-outlet></router-outlet>
+
       <a routerLink="/About" class="btn btn-outline-secondary btn-lg px-4 rounded-pill">
         Learn More
       </a>

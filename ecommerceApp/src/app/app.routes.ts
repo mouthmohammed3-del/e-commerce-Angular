@@ -9,7 +9,9 @@ import { ValuesComponent } from './components/values/values.component';
 
 export const routes: Routes = [
   {path:'Dashboard',component:HomeComponent  },
-  {path:'Home',component:HomeComponent},
+  {path:'Home',component:HomeComponent,children:[
+    {path:"Products",component: ProductsComponent},
+  ]},
   {path:'Products',component:ProductsComponent},
   {path:'About',component: AboutUsComponent,
     children:[
