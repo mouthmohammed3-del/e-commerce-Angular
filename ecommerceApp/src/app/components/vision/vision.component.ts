@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from "../../../../node_modules/@angular/router/index";
 
 @Component({
   selector: 'app-vision',
