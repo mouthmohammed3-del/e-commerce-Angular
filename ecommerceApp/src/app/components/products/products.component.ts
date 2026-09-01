@@ -114,11 +114,11 @@ export class ProductsComponent implements OnChanges {
 
    }
 
-   navigateToDetails() {
+   navigateToDetails(id: number) {
 
     // Navigate to the details page
     // this.router.navigateByUrl('/Details');
-    this.router.navigate(['/Details']);
+    this.router.navigate(['/Details', id]);
 
   }
 
