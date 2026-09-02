@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from "@angular/router";
+import { ActivatedRoute, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-details',
@@ -10,4 +10,13 @@ import { RouterOutlet } from "@angular/router";
 })
 export class DetailsComponent {
 
+  constructor(private _activatedRoute: ActivatedRoute)
+  {
+
+   }
+
+
 }
+
+// ActivatedRoute = "أعطني معلومات عن الصفحة التي أنا فيها الآن" (قراءة).
+// Router = "خذني لصفحة أخرى" (تنفيذ/تنقل).
