@@ -1,4 +1,5 @@
  <h1>{{ product?.name }}</h1>
+ <img [src]="product?.imgUrl" [alt]="product?.name" class="img-fluid transition-base" style="object-fit: contain; max-height: 100%;" [style.opacity]="product?.quantity === 0 ? '0.4' : '1'">
  <p>{{ product?.id}}</p>
  <p>{{ product?.price}}</p>
  <p>details works!</p>
