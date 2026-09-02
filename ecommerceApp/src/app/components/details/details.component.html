@@ -34,11 +34,27 @@
           </div>
         </div>
 
+
       </div>
+
     </div>
+    <div class="d-flex justify-content center gap-3 mt-4 margin" >
+
+          <!-- زر السابق: يتعطل إذا كنا في الخانة صفر -->
+          <button class="btn btn-outline-secondary"
+                  (click)="goPrevious()">
+            <i class="bi bi-chevron-left"></i> Previous
+          </button>
+
+          <!-- زر التالي: يتعطل إذا كنا في الخانة الأخيرة (طول المصفوفة - 1) -->
+          <button class="btn btn-outline-primary"
+                  (click)="goNext()" > Next <i class="bi bi-chevron-right"></i>
+          </button>
+
+        </div>
   </div>
 } @else {
-  <!-- حالة التحميل أو الخطأ -->
+  <!-- spinner حالة التحميل أو الخطأ -->
   <div class="container py-5 text-center min-vh-50 d-flex flex-column justify-content-center align-items-center">
     <div class="spinner-border text-primary mb-3" role="status">
       <span class="visually-hidden">Loading...</span>
@@ -50,4 +66,7 @@
       <i class="bi bi-arrow-left me-2"></i> Back to Products
     </button>
   </div>
+
 }
+
+

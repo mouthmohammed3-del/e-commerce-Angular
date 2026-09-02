@@ -42,6 +42,12 @@ export class DetailsComponent implements OnInit {
   this._location.back();
 
   }
+  goPrevious(){
+
+  }
+  goNext(){
+
+  }
 }
 
 
