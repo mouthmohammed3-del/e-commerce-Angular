@@ -1,11 +1,53 @@
 @if (product) {
-  <h1>{{ product.name }}</h1>
-  <!-- <img [src]="product.imgUrl" [alt]="product.name" class="img-fluid transition-base" style="object-fit: contain; max-height: 60%;" [style.opacity]="product.quantity === 0 ? '0.4' : '1'"> -->
-  <p>ID: {{ product.id }}</p>
-  <p>Price: {{ product.price | currency }}</p>
-} @else {
-  <!-- Optional: Show a loading spinner or a message if product is not found -->
-  <p class="text-danger">Product not found or loading...</p>
-}
+  <div class="container py-5">
+    <!-- بطاقة تفاصيل المنتج -->
+    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+      <div class="row g-0">
 
-<button class="btn btn-primary" (click)="goBack()">Back</button>
+        <!-- القسم الأيسر: الصورة -->
+        <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
+          <img [src]="product.imgUrl"
+               [alt]="product.name"
+               class="img-fluid transition-base rounded"
+               style="object-fit: contain; max-height: 400px;"
+               [style.opacity]="product.quantity === 0 ? '0.4' : '1'">
+        </div>
+
+        <!-- القسم الأيمن: البيانات -->
+        <div class="col-md-7">
+          <div class="card-body p-5">
+            <!-- العنوان ورقم التعريف -->
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <h2 class="card-title fw-bold text-dark mb-0">{{ product.name }}</h2>
+              <span class="badge bg-secondary rounded-pill px-3 py-2">ID: {{ product.id }}</span>
+            </div>
+
+            <!-- السعر -->
+            <h3 class="text-success fw-bolder mb-4">{{ product.price | currency }}</h3>
+
+            <hr class="text-muted opacity-25 mb-4">
+
+            <!-- زر العودة -->
+            <button class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm" (click)="goBack()">
+              <i class="bi bi-arrow-left me-2"></i> Back to Products
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+} @else {
+  <!-- حالة التحميل أو الخطأ -->
+  <div class="container py-5 text-center min-vh-50 d-flex flex-column justify-content-center align-items-center">
+    <div class="spinner-border text-primary mb-3" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <h4 class="text-muted fw-bold">Loading product details...</h4>
+    <p class="text-secondary">Please wait or check your connection.</p>
+
+    <button class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm" (click)="goBack()">
+      <i class="bi bi-arrow-left me-2"></i> Back to Products
+    </button>
+  </div>
+}
