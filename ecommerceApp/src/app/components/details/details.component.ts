@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterOutlet } from "@angular/router";
 import { StaticProductsService } from '../../services/static-products.service';
 import { Iproduct } from '../../models/iproduct';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-details',
@@ -16,7 +17,10 @@ export class DetailsComponent implements OnInit {
   CurrentproductId:number=0;
   product:Iproduct|null=null;
    constructor(private _activatedRoute: ActivatedRoute,
-   private _staticProductsService:StaticProductsService)
+   private _staticProductsService:StaticProductsService,
+   private _location: Location
+
+  )
   {
 
 
@@ -34,8 +38,13 @@ export class DetailsComponent implements OnInit {
 
   }
 
+  goBack(){
+  this._location.back();
 
+  }
 }
 
+
+// وLocation هي خدمة جاهزة من Angular تساعدنا في التعامل مع تاريخ التنقل بين الصفحات.
 // ActivatedRoute = "أعطني معلومات عن الصفحة التي أنا فيها الآن" (قراءة).
 // Router = "خذني لصفحة أخرى" (تنفيذ/تنقل).
