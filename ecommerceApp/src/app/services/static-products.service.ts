@@ -20,16 +20,16 @@ export class StaticProductsService {
     ];
   }
 
-  getAllProducts(): Iproduct[] {
+  getAllproducts(): Iproduct[] {
     return this.products;
   }
 
-  getProductById(id: number): Iproduct | null {
+  getproductById(id: number): Iproduct | null {
     const foundProduct = this.products.find(p => p.id === id);
     return foundProduct ?? null;
   }
 
-  getProductsByCatId(catId: number): Iproduct[] {
+  getproductsByCatId(catId: number): Iproduct[] {
     if (catId === 0) {
       return this.products;
     }

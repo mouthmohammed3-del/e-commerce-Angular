@@ -1,9 +1,11 @@
 @if (product) {
   <h1>{{ product.name }}</h1>
-  <img [src]="product.imgUrl" [alt]="product.name" class="img-fluid transition-base" style="object-fit: contain; max-height: 100%;" [style.opacity]="product.quantity === 0 ? '0.4' : '1'">
+  <!-- <img [src]="product.imgUrl" [alt]="product.name" class="img-fluid transition-base" style="object-fit: contain; max-height: 60%;" [style.opacity]="product.quantity === 0 ? '0.4' : '1'"> -->
   <p>ID: {{ product.id }}</p>
   <p>Price: {{ product.price | currency }}</p>
 } @else {
   <!-- Optional: Show a loading spinner or a message if product is not found -->
   <p class="text-danger">Product not found or loading...</p>
 }
+
+<button class="btn btn-primary" (click)="goBack()">Back</button>
