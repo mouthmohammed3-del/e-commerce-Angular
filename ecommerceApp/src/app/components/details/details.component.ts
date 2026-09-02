@@ -24,7 +24,8 @@ export class DetailsComponent implements OnInit {
     // let productId = this._activatedRoute.snapshot.paramMap.get("id");
     // console.log(productId);
     this.CurrentproductId = Number(this._activatedRoute.snapshot.paramMap.get("id"));
-    this._staticProductsService.getproductById(this.CurrentproductId);
+
+   this.product = this._staticProductsService.getproductById(this.CurrentproductId);
 
 
 
