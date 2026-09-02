@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from "@angular/router";
 import { StaticProductsService } from '../../services/static-products.service';
 import { Iproduct } from '../../models/iproduct';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,CurrencyPipe],
+
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })
