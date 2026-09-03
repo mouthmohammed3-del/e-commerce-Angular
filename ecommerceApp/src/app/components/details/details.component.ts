@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterOutlet } from "@angular/router";
+import { ActivatedRoute, Router, RouterOutlet } from "@angular/router";
 import { StaticProductsService } from '../../services/static-products.service';
 import { Iproduct } from '../../models/iproduct';
 import { CurrencyPipe, DatePipe } from '@angular/common';
@@ -7,7 +7,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [RouterOutlet,CurrencyPipe],
+  imports: [CurrencyPipe],
 
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
@@ -17,7 +17,8 @@ export class DetailsComponent implements OnInit {
   product:Iproduct|null=null;
    constructor(private _activatedRoute: ActivatedRoute,
    private _staticProductsService:StaticProductsService,
-   private _location: Location
+   private _location: Location,
+   private _router:Router
 
   )
   {
@@ -45,13 +46,20 @@ export class DetailsComponent implements OnInit {
 
 
   }
-  goNext(){
-    let idarr = this._staticProductsService.mapProductsToIds();
-    // console.log(idarr )
-    let currentIdindex = idarr.findIndex(( id)=>id == this.CurrentproductId );
+  goNext(): void {
+    const productIds =
+      this._staticProductsService.mapProductsToIds();
 
+    const currentIdIndex =
+      productIds.findIndex(
+        id => id === this.CurrentproductId
+      );
 
-  }
+    if (currentIdIndex < productIds.length - 1) {
+      this._router.navigateByUrl(
+        `/Details/${productIds[currentIdIndex + 1]}`
+      );
+    }
 }
 
 
