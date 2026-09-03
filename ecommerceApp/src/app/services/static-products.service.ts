@@ -19,7 +19,7 @@ export class StaticProductsService {
       { id: 5, name: 'samsung', price: 500, quantity: 0, imgUrl: 'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg', catId: 5, purchaseQuantity: 1 },
     ];
   }
-
+ 
   getAllproducts(): Iproduct[] {
     return this.products;
   }
@@ -34,5 +34,8 @@ export class StaticProductsService {
       return this.products;
     }
     return this.products.filter(p => p.catId === catId);
+  }
+  mapProductsToIds():number[]{
+    return this.products.map(p => p.id);
   }
 }

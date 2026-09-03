@@ -4,7 +4,6 @@ import { StaticProductsService } from '../../services/static-products.service';
 import { Iproduct } from '../../models/iproduct';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Location } from '@angular/common';
-
 @Component({
   selector: 'app-details',
   standalone: true,
@@ -44,8 +43,13 @@ export class DetailsComponent implements OnInit {
   }
   goPrevious(){
 
+
   }
   goNext(){
+    let idarr = this._staticProductsService.mapProductsToIds();
+    // console.log(idarr )
+    let currentIdindex = idarr.findIndex(( id)=>id == this.CurrentproductId );
+
 
   }
 }
