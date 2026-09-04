@@ -18,13 +18,18 @@ export class HomeComponent implements OnInit{
 
   }
   ngOnInit(): void {
-     this._notificatonSer.getnotification().subscribe((notification)=>{
+    this._notificatonSer.getnotification().subscribe((notification)=>{
       console.log(notification);
 
 
-    })
+    },(error)=>{
+      console.log(`-------${error}----------- `);
 
-  }
+
+    }
+
+  );
+}
 
 
 }

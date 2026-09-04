@@ -28,7 +28,7 @@ export class NotificationService {
           observer.complete()
         }
         if(this.notifications[counter]==''){
-          observer.error()
+          observer.error("thi notificaion is empty")
         }
         observer.next(this.notifications[counter]);
         counter++;
