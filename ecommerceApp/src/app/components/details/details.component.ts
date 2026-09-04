@@ -16,6 +16,7 @@ export class DetailsComponent implements OnInit {
   CurrentproductId: number = 0;
   product: Iproduct | null = null;
   productIds: number[];
+  currentIdIndex:number=0
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _staticProductsService: StaticProductsService,
@@ -35,7 +36,7 @@ export class DetailsComponent implements OnInit {
 
     this._activatedRoute.paramMap.subscribe((paramMap)=>{
      this.CurrentproductId =Number( paramMap.get('id'))
-     this.product = this._staticProductsService.getproductById(this.CurrentproductId); 
+     this.product = this._staticProductsService.getproductById(this.CurrentproductId);
     })
 
   }
@@ -61,12 +62,12 @@ export class DetailsComponent implements OnInit {
     }
   }
   goPrevious() {
-    const currentIdIndex = this.productIds.findIndex(
+    this.currentIdIndex = this.productIds.findIndex(
       (id) => id === this.CurrentproductId,
     );
-    if (currentIdIndex > 0) {
+    if (this.currentIdIndex > 0) {
       this._router.navigateByUrl(
-        `/Details/${this.productIds[currentIdIndex - 1]}`,
+        `/Details/${this.productIds[this.currentIdIndex - 1]}`,
       );
     }
   }

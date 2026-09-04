@@ -42,12 +42,14 @@
 
           <!-- زر السابق: يتعطل إذا كنا في الخانة صفر -->
           <button class="btn btn-outline-secondary"
+                  [disabled]="CurrentproductId==productIds[0]"
                   (click)="goPrevious()">
             <i class="bi bi-chevron-left"></i> Previous
           </button>
 
           <!-- زر التالي: يتعطل إذا كنا في الخانة الأخيرة (طول المصفوفة - 1) -->
           <button class="btn btn-outline-primary"
+                  [disabled]="CurrentproductId==productIds[productIds.length-1]"
                   (click)="goNext()" > Next <i class="bi bi-chevron-right"></i>
           </button>
 
