@@ -7,6 +7,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { VisionComponent } from './components/vision/vision.component';
 import { ValuesComponent } from './components/values/values.component';
 import { DetailsComponent } from './components/details/details.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
@@ -16,6 +17,7 @@ export const routes: Routes = [
 
 
   ]},
+  {path:'login',component:LoginComponent},
   {path:'Details/:id',component: DetailsComponent},
   {path:'Products',component:ProductsComponent},
   {path:'About',component: AboutUsComponent,
@@ -25,6 +27,7 @@ export const routes: Routes = [
       {path:'',redirectTo:'About/Vision',pathMatch:'full'},//
       {path:'Vision',component:VisionComponent},
       {path:'Values',component:ValuesComponent},
+
   ],
 },
   {path:'Orders',component:OrderComponent},
