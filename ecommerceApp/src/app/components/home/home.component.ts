@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { RouterOutlet } from "../../../../node_modules/@angular/router/index";
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,21 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
+  /**
+   *
+   */
+  constructor(private _notificatonSer:NotificationService) {
+
+  }
+  ngOnInit(): void {
+     this._notificatonSer.getnotification().subscribe((notification)=>{
+      console.log(notification);
+
+
+    })
+
+  }
+
 
 }
