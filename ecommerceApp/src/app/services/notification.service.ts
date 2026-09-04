@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root', //This means Angular provides one application-wide instance of this Service.
@@ -17,7 +17,9 @@ export class NotificationService {
     ];
   }
   getnotification():Observable<string> {
-    return  new Observable<string>((observer) => {
+    // return from(this.notifications)
+
+     return  new Observable<string>((observer) => {
       // observer.next()
       // observer.error()
       // observer.complete();
@@ -45,5 +47,5 @@ export class NotificationService {
       }
 
     });
-  }
+   }
 }

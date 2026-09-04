@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 // import { RouterOutlet } from "../../../../node_modules/@angular/router/index";
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
+import { filter, map, Subscription  } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +11,14 @@ import { NotificationService } from '../../services/notification.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   /**
    *
+
    */
-  constructor(private _notificatonSer: NotificationService) {}
+  subscribtion! :Subscription
+  constructor(private _notificationService: NotificationService) {}
+
   ngOnInit(): void {
     //     this._notificatonSer.getnotification().subscribe((notification)=>{
     //       console.log(notification);
@@ -27,8 +31,14 @@ export class HomeComponent implements OnInit {
     //     }
     //
     //   );
-    
-    this._notificatonSer.getnotification().subscribe({
+
+    this._notificationService.getnotification().pipe(
+
+      map((msg)=> `${msg} hi hi hi hi`),
+
+       filter((msg)=>msg.startsWith('mohammed'))
+
+    ).subscribe({
       next:(notification)=>{
         console.log(notification);
       },
@@ -40,6 +50,10 @@ export class HomeComponent implements OnInit {
         console.log("notification completed Successfull");
 
       },
-    })
+    });
+  }
+  ngOnDestroy(): void {
+    this.subscribtion.unsubscribe()
+
   }
 }
