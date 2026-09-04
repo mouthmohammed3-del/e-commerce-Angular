@@ -22,7 +22,9 @@ export class NotificationService {
       // observer.error()
       // observer.complete();
       let counter = 0;
-      setInterval(() => { //It repeatedly executes code after a specific amount of time.
+    let notificationsetInterval = setInterval(() => { //It repeatedly executes code after a specific amount of time.
+        console.log('test');
+
 
         if(counter===this.notifications.length){
           observer.complete()
@@ -33,6 +35,15 @@ export class NotificationService {
         observer.next(this.notifications[counter]);
         counter++;
       }, 2000);
+      return{
+        unsubscribe:()=>{
+        clearInterval(notificationsetInterval)
+
+      }
+
+
+      }
+
     });
   }
 }
