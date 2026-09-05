@@ -62,9 +62,12 @@
     <li>
       <!-- تم تغيير href إلى routerLink -->
       <a routerLink="/login" class="nav-link link-dark d-flex align-items-center" routerLinkActive="bg-success text-white">
-        <i class="bi-box-arrow-in-right me-3 fs-5"></i> login
+
+        <span *ngIf="!isUserloggedin"><i class="bi-box-arrow-in-right me-3 fs-5"></i>login</span>
+        <span *ngIf="isUserloggedin"><i class="bi-box-arrow-in-left me-3 fs-5"></i>Logout</span>
       </a>
     </li>
+
   </ul>
 
   <hr>
