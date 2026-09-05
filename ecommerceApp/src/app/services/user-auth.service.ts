@@ -5,9 +5,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserAuthService {
-
+//علامة $ تخبر المبرمجين أن هذا المتغير هو:
+// Observable أي شيء يمكننا الاستماع إليه باستخدام:
   // isUserLigged:boolean=false;
 private  authSubject!:BehaviorSubject<boolean>;
+isUserLogged$ = this.authSubject.asObservable();
 
   constructor() {
     this.authSubject= new BehaviorSubject<boolean>(false);
@@ -24,10 +26,10 @@ private  authSubject!:BehaviorSubject<boolean>;
 getUserlogged():boolean{
  return  localStorage.getItem('token')?true:false;
 }
-getAuthsubject():BehaviorSubject<boolean>{
-
-  return this.authSubject;
-
-}
+// getAuthsubject():BehaviorSubject<boolean>{
+//
+//   return this.authSubject;
+//
+// }
 
 }
