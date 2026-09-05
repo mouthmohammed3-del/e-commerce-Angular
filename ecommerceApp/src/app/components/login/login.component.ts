@@ -12,15 +12,21 @@ export class LoginComponent {
   /**
    *
    */
+  isUserLogged:boolean;
+  
   constructor(private userAuthSer: UserAuthService) {
 
+  this.isUserLogged = this.userAuthSer.getUserlogged();
 
   }
   login(){
-    this.userAuthSer.login()
+
+    this.userAuthSer.login();
+   this.isUserLogged =  this.userAuthSer.getUserlogged();
   }
   logout(){
     this.userAuthSer.logout();
+    this.isUserLogged = this.userAuthSer.getUserlogged();
   }
 
 }
