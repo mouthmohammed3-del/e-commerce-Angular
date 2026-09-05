@@ -8,8 +8,8 @@ export class UserAuthService {
 //علامة $ تخبر المبرمجين أن هذا المتغير هو:
 // Observable أي شيء يمكننا الاستماع إليه باستخدام:
   // isUserLigged:boolean=false;
-private  authSubject!:BehaviorSubject<boolean>;
-isUserLogged$ = this.authSubject.asObservable();
+   private  authSubject=new BehaviorSubject<boolean>(false);
+   isUserLogged$ = this.authSubject.asObservable();
 
   constructor() {
     this.authSubject= new BehaviorSubject<boolean>(false);
