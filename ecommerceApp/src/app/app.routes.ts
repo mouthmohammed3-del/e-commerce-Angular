@@ -14,14 +14,14 @@ import { UserAuthService } from './services/user-auth.service';
 export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: 'Dashboard', component: HomeComponent },
-  {
-    path: 'Home',
-    component: HomeComponent,
-    children: [{ path: 'Products', component: ProductsComponent }],
-  },
+  // {
+  //   path: 'Home',
+  //   component: HomeComponent,
+  //   children: [{ path: 'Products', component: ProductsComponent }],
+  // },
   { path: 'login', component: LoginComponent },
   { path: 'Details/:id', component: DetailsComponent },
-  { path: 'Products', component: ProductsComponent},
+  { path: 'Products', component: ProductsComponent,canActivate:[authGuard]},
   {
     path: 'About',
     component: AboutUsComponent,
