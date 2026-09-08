@@ -1,21 +1,35 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Iproduct } from '../models/iproduct';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class APiProductsService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
 
-getAllproducts(){
+getAllproducts(): Observable<Iproduct[]> {
+
+  return  this.http.get<Iproduct[]>(`http://localhost:3000/products`);
 
 }
 
-getproductById(id:number){
-  
+getproductById(id:number):Observable<Iproduct> {
+
+  return this.http.get<Iproduct>(`http://localhost:3000/products/${id}`);
+
 }
-getproductByCatId(catId:number)
-{
+getproductByCatId(catId:number):Observable<Iproduct>{
+  return this.http.get<Iproduct>(`http://localhost:3000/products?catId=${catId}`);
+
+
+}
+
+
+
+
 
 }
