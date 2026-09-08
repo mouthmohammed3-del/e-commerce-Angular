@@ -1,28 +1,73 @@
 {
   "products": [
-
-
-      {"id":2,"name":"Hp laptop","price":200,"quantity":50,"imgUrl":"assets/lauren-mancke-aOC7TSLb1o8-unsplash.jpg","catId":1,"purchaseQuantity": 1},
-
-      {"id":3,"name":"Iphone","price":300,"quantity":30,"imgUrl":"assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg","catId":3,"purchaseQuantity": 1},
-
-      {"id":4,"name":"oppo","price":400,"quantity":40,"imgUrl":"assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg","catId":4,"purchaseQuantity" : 1},
-
-       {"id":5,"name":"samsung","price":500,"quantity":0,"imgUrl":"assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg","catId":5,"purchaseQuantity": 1}
-
+    {
+      "id": "2",
+      "name": "Hp laptop",
+      "price": 200,
+      "quantity": 50,
+      "imgUrl": "assets/lauren-mancke-aOC7TSLb1o8-unsplash.jpg",
+      "catId": 1,
+      "purchaseQuantity": 1
+    },
+    {
+      "id": "3",
+      "name": "Iphone",
+      "price": 300,
+      "quantity": 30,
+      "imgUrl": "assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg",
+      "catId": 3,
+      "purchaseQuantity": 1
+    },
+    {
+      "id": "5",
+      "name": "samsung",
+      "price": 500,
+      "quantity": 0,
+      "imgUrl": "assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg",
+      "catId": 5,
+      "purchaseQuantity": 1
+    },
+    {
+      "id": "QItj9QKxzyQ"
+    },
+    {
+      "id": "GHf85V5DPc0"
+    },
+    {
+      "id": "4S1agpzsbJs",
+      "name": "oppo",
+      "price": 400,
+      "quantity": 40,
+      "imgUrl": "assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg",
+      "catId": 4,
+      "purchaseQuantity": 1
+    },
+    {
+      "id": "TAP5wiKYdmw",
+      "name": "DEL",
+      "price": 500,
+      "quantity": 40,
+      "imgUrl": "assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg",
+      "catId": 3,
+      "purchaseQuantity": 3
+    }
   ],
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Category 1"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Category 2"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Category 3"
+    },
+    {
+      "id": "2C9dPplnEIw"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
