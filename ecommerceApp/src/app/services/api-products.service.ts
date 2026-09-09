@@ -23,8 +23,8 @@ getproductById(id:number):Observable<Iproduct> {
   return this.http.get<Iproduct>(`${environment.basedUrl}/products/${id}`);
 
 }
-getproductByCatId(catId:number):Observable<Iproduct>{
-  return this.http.get<Iproduct>(`${environment.basedUrl}/products?catId=${catId}`);
+getproductByCatId(catId:number):Observable<Iproduct[]>{
+  return this.http.get<Iproduct[]>(`${environment.basedUrl}/products?catId=${catId}`);
 
 
 }

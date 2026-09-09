@@ -4,6 +4,7 @@ import { StaticProductsService } from '../../services/static-products.service';
 import { Iproduct } from '../../models/iproduct';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Location } from '@angular/common';
+import { APiProductsService } from '../../services/api-products.service';
 @Component({
   selector: 'app-details',
   standalone: true,
@@ -20,8 +21,11 @@ export class DetailsComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _staticProductsService: StaticProductsService,
+    private _APIproductsService: APiProductsService,
+
     private _location: Location,
     private _router: Router,
+
   ) {
     this.productIds = this._staticProductsService.mapProductsToIds();
   }
@@ -36,7 +40,12 @@ export class DetailsComponent implements OnInit {
 
     this._activatedRoute.paramMap.subscribe((paramMap)=>{
      this.CurrentproductId =Number( paramMap.get('id'))
-     this.product = this._staticProductsService.getproductById(this.CurrentproductId);
+     this._APIproductsService.getproductById(this.CurrentproductId).subscribe({
+      next:(res)=>{
+        this.product=res
+      },
+      error:(err)=>{console.log(err)}
+     })   
     })
 
   }

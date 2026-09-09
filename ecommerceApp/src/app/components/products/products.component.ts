@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, input, NgModule, OnChanges, Output, output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, input, NgModule, OnChanges, OnInit, Output, output, SimpleChanges } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { Iproduct } from '../../models/iproduct';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +9,7 @@ import { SquarePipe } from '../../pipes/square.pipe';
 import { OrderComponent } from '../order/order.component';
 import { StaticProductsService } from '../../services/static-products.service';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { APiProductsService } from '../../services/api-products.service';
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -20,9 +21,9 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent implements OnChanges {
+export class ProductsComponent implements OnChanges,OnInit {
 
-  products : Iproduct[];
+  products :  Iproduct[]=[] as Iproduct[];
 
   filteredProducts!:Iproduct[];
   // selectedCatId: number = 0;
@@ -32,12 +33,11 @@ export class ProductsComponent implements OnChanges {
   myData:Date=new Date()
   //define event
 @Output() onTotalPriceChanged:EventEmitter<number>
+//private _StaticProductsService:StaticProductsService
+  constructor(private _APiproductsservice:APiProductsService, private router:Router)
+  {
 
-  constructor(private _StaticProductsService:StaticProductsService,
-  private router:Router
-
-  ){
-    this.products = this._StaticProductsService.getAllproducts()
+    //  this.products = this._APiproductsservice.getAllproducts()
     // this.products = [
     //   {id:1,name:'Dell laptop 1',price:100,quantity:8,imgUrl:'assets/lee-campbell-GI6L2pkiZgQ-unsplash.jpg',catId:1,purchaseQuantity: 3},
     //   {id:2,name:'Hp laptop',price:200,quantity:50,imgUrl:'assets/lauren-mancke-aOC7TSLb1o8-unsplash.jpg',catId:1,purchaseQuantity: 1},
@@ -50,8 +50,30 @@ export class ProductsComponent implements OnChanges {
 
     this.onTotalPriceChanged=new EventEmitter<number>()
   }
+  ngOnInit(): void {
+    this._APiproductsservice.getAllproducts().subscribe({
+      next:(res)=>{
+        this.products=res
+          this.filteredProducts = this.products;
+
+      },
+
+
+      error:(err)=>{console.log(err)}
+    })
+  }
   ngOnChanges() {
-    this.filteredProducts = this._StaticProductsService.getproductsByCatId(this.recievedCatId)
+    this._APiproductsservice.getproductByCatId(this.recievedCatId).subscribe({
+      next:(res)=>{
+
+          this.filteredProducts = res  
+
+      },
+
+
+      error:(err)=>{console.log(err)}
+    })
+
   }
 
   filterProducts() {
