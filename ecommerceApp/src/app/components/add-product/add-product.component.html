@@ -1,1 +1,63 @@
 <p>add-product works!</p>
+
+<form>
+
+  <!-- Name -->
+  <div class="mb-3">
+    <label class="form-label">Name:</label>
+    <input
+      type="text"
+      class="form-control"
+    >
+  </div>
+
+  <!-- Price -->
+  <div class="mb-3">
+    <label class="form-label">Price:</label>
+    <input
+      type="number"
+      class="form-control"
+    >
+  </div>
+
+  <!-- Quantity -->
+  <div class="mb-3">
+    <label class="form-label">Quantity:</label>
+    <input
+      type="number"
+      class="form-control"
+    >
+  </div>
+
+  <!-- Image -->
+  <div class="mb-3">
+    <label class="form-label">Image:</label>
+    <input
+      type="file"
+      class="form-control"
+    >
+  </div>
+
+  <!-- Category -->
+  <div class="mb-3">
+    <label class="form-label">Categories:</label>
+
+    <select class="form-select form-select-lg">
+
+      @for (cat of categories; track cat.id) {
+
+        <option [value]="cat.id">
+          {{ cat.name }}
+        </option>
+
+      }
+
+    </select>
+
+  </div>
+
+  <button class="btn btn-primary">
+    Add Product
+  </button>
+
+</form>

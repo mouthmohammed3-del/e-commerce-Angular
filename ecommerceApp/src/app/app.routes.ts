@@ -10,6 +10,7 @@ import { DetailsComponent } from './components/details/details.component';
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { UserAuthService } from './services/user-auth.service';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -33,6 +34,8 @@ export const routes: Routes = [
     ],
   },
   { path: 'Orders', component: OrderComponent },
+  { path: 'add-product', component: AddProductComponent},
+
   // maust by the last one
   { path: '**', component: NotFoundComponent },
 ];
