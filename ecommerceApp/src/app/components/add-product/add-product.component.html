@@ -1,9 +1,9 @@
 <!-- <p>add-product works!</p> -->
 
-<h1>{{newProduct | json}} </h1>
+<h1>{{newproduct | json}} </h1>
 
 
-<form>
+<form (submit)="addnewproduct()">
 
   <!-- Name -->
   <div class="mb-3">
@@ -13,7 +13,7 @@
 
       type="text"
       class="form-control"
-      [(ngModel)]="newProduct.name"
+      [(ngModel)]="newproduct.name"
       name="name"
     >
   </div>
@@ -24,7 +24,7 @@
     <input
       type="number"
       class="form-control"
-      [(ngModel)]="newProduct.price"
+      [(ngModel)]="newproduct.price"
       name="price"
     >
   </div>
@@ -35,7 +35,7 @@
     <input
       type="number"
       class="form-control"
-      [(ngModel)]="newProduct.quantity"
+      [(ngModel)]="newproduct.quantity"
       name="quantity"
     >
   </div>
@@ -46,7 +46,7 @@
     <input
       type="file"
       class="form-control"
-      [(ngModel)]="newProduct.imgUrl"
+      [(ngModel)]="newproduct.imgUrl"
       name="imgUrl"
     >
   </div>
@@ -55,7 +55,7 @@
   <div class="mb-3">
     <label class="form-label">Categories:</label>
 
-    <select class="form-select form-select-lg mb-3" [(ngModel)]="newProduct.catId" name="catId">
+    <select class="form-select form-select-lg mb-3" [(ngModel)]="newproduct.catId" name="catId">
 
       @for (cat of categories; track cat.id) {
 
@@ -69,7 +69,7 @@
 
   </div>
 
-  <button class="btn btn-primary">
+  <button type="submit" class="btn btn-primary">
     Add Product
   </button>
 

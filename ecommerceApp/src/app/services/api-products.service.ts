@@ -27,6 +27,9 @@ getproductByCatId(catId:number):Observable<Iproduct[]>{
   return this.http.get<Iproduct[]>(`${environment.basedUrl}/products?catId=${catId}`);
 
 
-}
 
+}
+addproduct(newproduct:Iproduct):Observable<Iproduct>{
+  return this.http.post<Iproduct>(`${environment.basedUrl}/products`,newproduct);
+}
 }
