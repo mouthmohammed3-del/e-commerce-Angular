@@ -1,48 +1,99 @@
 import { Component } from '@angular/core';
-import { Icategory } from '../../models/icategory';
 import { FormsModule } from '@angular/forms';
-import { Iproduct } from '../../models/iproduct';
-import { CommonModule } from '@angular/common';
-import { APiProductsService } from '../../services/api-products.service';
-import { Router } from '@angular/router';
+import { JsonPipe } from '@angular/common';
 import Swal from 'sweetalert2';
+
+import { Iproduct } from '../../models/iproduct';
+import { Icategory } from '../../models/icategory';
+import { APiProductsService } from '../../services/api-products.service';
+
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [
+    FormsModule,
+    JsonPipe
+  ],
   templateUrl: './add-product.component.html',
-  styleUrl: './add-product.component.css',
+  styleUrl: './add-product.component.css'
 })
 export class AddProductComponent {
-  newproduct: Iproduct = {} as Iproduct;
-  categories: Icategory[];
 
-  /**
-   *
-   */
+  categories: Icategory[] = [
+    { id: 1, name: 'Electronics' },
+    { id: 2, name: 'Clothing' },
+    { id: 3, name: 'Home & Kitchen' }
+  ];
+
+  newproduct: Iproduct = {
+    id: 0,
+    name: '',
+    price: 0,
+    quantity: 0,
+    imgUrl: '',
+    catId: 1,
+    purchaseQuantity: 0
+  };
+
   constructor(
-    private _APiProductsService: APiProductsService,
-    private _router: Router,
-  ) {
-    this.categories = [
-      { id: 1, name: 'Electronics' },
-      { id: 2, name: 'Clothing' },
-      { id: 3, name: 'Home & Kitchen' },
-    ];
-  }
-
+    private _APiproductsservice: APiProductsService
+  ) {}
 
   addnewproduct() {
-    {
-      this._APiProductsService.addproduct(this.newproduct).subscribe({
-        next: () => {
-            Swal.fire('Success', 'Product added successfully', 'success');
-          this._router.navigate(['/Products']);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-    }
+
+    this._APiproductsservice.addproduct(this.newproduct).subscribe({
+
+      next: (res) => {
+
+        console.log('Product added:', res);
+
+        Swal.fire({
+          title: 'Success!',
+          text: 'Product added successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+
+        // Reset form data
+        this.newproduct = {
+          id: 0,
+          name: '',
+          price: 0,
+          quantity: 0,
+          imgUrl: '',
+          catId: 1,
+          purchaseQuantity: 0
+        };
+
+      },
+
+      error: (err) => {
+
+        console.log('Error:', err);
+
+        Swal.fire({
+          title: 'Error!',
+          text: 'Something went wrong while adding the product.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+
+      }
+
+    });
+
   }
-};
+  selectedFile: File | null = null;
+
+// onFileSelected(event: Event) {
+//
+//   const input = event.target as HTMLInputElement;
+//
+//   if (input.files && input.files.length > 0) {
+//
+//     this.selectedFile = input.files[0];
+//
+//     console.log(this.selectedFile);
+//   }
+// }
+}

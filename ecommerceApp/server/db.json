@@ -86,6 +86,17 @@
       "imgUrl": "C:\\fakepath\\imagesstore.png",
       "catId": "1",
       "id": "geajBLvqfHI"
+    },
+    {
+      "name": "iphon13",
+      "price": 400,
+      "quantity": 3,
+      "imgUrl": "C:\\fakepath\\translated_image_ar.png",
+      "catId": "1",
+      "id": "5MVaaAhWmro"
+    },
+    {
+      "id": "Dz-ZYJ3raRU"
     }
   ],
   "categories": [
