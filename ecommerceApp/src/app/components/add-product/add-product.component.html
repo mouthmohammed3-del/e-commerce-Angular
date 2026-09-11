@@ -20,12 +20,12 @@
     >
     <div>
       <p class="text-danger">
-        <!-- <span *ngIf="addProductForm.submitted && addProductForm.controls.name?.errors?.['required']" class="text-danger">
+        <span *ngIf="addProductForm.submitted && addProductForm.controls.name?.errors?.['required']" class="text-danger">
           Name is required.
         </span>
         <span *ngIf="addProductForm.submitted && addProductForm.controls.name?.errors?.['pattern']" class="text-danger">
           Name must be 3-15 characters long and contain only letters and spaces.
-        </span> -->
+        </span>
         name is required and must be 3-15 characters long and contain only letters and spaces.
 
       </p>
