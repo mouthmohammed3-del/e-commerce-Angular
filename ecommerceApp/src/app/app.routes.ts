@@ -34,12 +34,12 @@ export const routes: Routes = [
       { path: 'Values', component: ValuesComponent },
     ],
   },
-  { path: 'product/add', component: ProductFormComponent },
+  { path: 'product/add', component: ProductFormComponent,canActivate:[authGuard] }, // مسار وضع الإضافة
 
   // مسار وضع التعديل (يستقبل ID)
-  { path: 'product/edit/:id', component: ProductFormComponent },
+  { path: 'product/edit/:id', component: ProductFormComponent,canActivate:[authGuard] },
   { path: 'Orders', component: OrderComponent },
-  { path: 'add-product', component: AddProductComponent},
+  { path: 'add-product', component: AddProductComponent,canActivate:[authGuard] },
 
   // maust by the last one
   { path: '**', component: NotFoundComponent },
