@@ -20,12 +20,15 @@
 
     <!-- Orders -->
     <li>
-      <!-- تم تغيير href إلى routerLink -->
       <a routerLink="/Orders" class="nav-link link-dark d-flex align-items-center justify-content-between" routerLinkActive="bg-success text-white">
         <div>
           <i class="bi bi-box-seam me-3 fs-5"></i> Orders
         </div>
-        <span class="badge bg-danger rounded-pill">12 New</span>
+
+        <!-- 🌟 السحر هنا: نعرض الشارة فقط إذا كان هناك منتجات -->
+        @if (productsCount > 0) {
+          <span class="badge bg-danger rounded-pill">{{ productsCount }} New</span>
+        }
       </a>
     </li>
 

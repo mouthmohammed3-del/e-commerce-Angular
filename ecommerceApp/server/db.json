@@ -19,9 +19,6 @@
       "purchaseQuantity": 1
     },
     {
-      "id": "GHf85V5DPc0"
-    },
-    {
       "id": "4S1agpzsbJs",
       "name": "oppo",
       "price": 400,
@@ -38,9 +35,6 @@
       "imgUrl": "assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg",
       "catId": 3,
       "purchaseQuantity": 3
-    },
-    {
-      "id": "2lT7u-3-_cU"
     },
     {
       "name": "nn",
@@ -74,9 +68,6 @@
       "imgUrl": "C:\\fakepath\\imagesstore.png",
       "catId": "1",
       "id": "geajBLvqfHI"
-    },
-    {
-      "id": "Dz-ZYJ3raRU"
     }
   ],
   "categories": [

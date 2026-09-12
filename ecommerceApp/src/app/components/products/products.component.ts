@@ -111,7 +111,8 @@ export class ProductsComponent implements OnChanges,OnInit {
           next: () => {
             // تحديث المصفوفة لإخفاء المنتج من الشاشة
             this.filteredProducts = this.filteredProducts.filter(product => product.id !== id);
-
+// 🌟 2. السحر هنا: نرسل العدد الجديد للإذاعة ليتحدث الـ Header فوراً!
+          this._APiproductsservice.updateProductsCount(this.filteredProducts.length);
             // 3. إظهار رسالة نجاح صغيرة وجميلة
             Swal.fire(
               'Deleted!',

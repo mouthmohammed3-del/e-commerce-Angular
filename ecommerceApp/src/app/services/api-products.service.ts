@@ -3,12 +3,18 @@ import { Injectable } from '@angular/core';
 import { Iproduct } from '../models/iproduct';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class APiProductsService {
-
+  private productsCountSubject = new BehaviorSubject<number>(0);
+  productsCount$ = this.productsCountSubject.asObservable();
+  updateProductsCount(newCount: number) {
+    this.productsCountSubject.next(newCount);
+  }
+  
   constructor(private http: HttpClient) { }
 
 
