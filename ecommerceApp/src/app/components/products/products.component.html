@@ -26,18 +26,20 @@
   <!-- Product Grid -->
   <div class="row g-4">
     @for (product of filteredProducts; track product.id) {
-      <div class="col-12 col-md-6 col-xl-3" appHighlighcard>
-        <!-- 🌟 الكلاس هنا: تم إضافة product-card-hover للبطاقة الرئيسية -->
+      <div class="col-12 col-md-6 col-xl-3"
+
+      >
+      <!-- <div class="col-12 col-md-6 col-xl-3"
+      appHighlighcard
+      > -->
         <div
           class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card-hover"
           externalcolors="red"
         >
-          <!-- Dynamic Image -->
           <div
             class="bg-white p-4 d-flex justify-content-center align-items-center"
             style="height: 220px"
           >
-            <!-- 🌟 الكلاس هنا: تم إضافة transition-base للصورة -->
             <img
               [src]="product.imgUrl"
               [alt]="product.name"
@@ -48,7 +50,6 @@
           </div>
 
           <div class="card-body bg-light d-flex flex-column">
-            <!-- Badges and Stock Progress Bar -->
             <div class="mb-3">
               <div
                 class="d-flex justify-content-between align-items-center mb-2"
@@ -71,7 +72,6 @@
                 >
               </div>
 
-              <!-- Dynamic Stock Progress Bar -->
               @if (product.quantity > 0) {
                 <div class="progress bg-white shadow-sm" style="height: 6px">
                   <div
@@ -91,7 +91,6 @@
               {{ product.price | currency }}
             </h4>
 
-            <!-- Live Total Price Preview -->
             @if (product.purchaseQuantity && product.purchaseQuantity > 1) {
               <div
                 class="text-success small fw-bold mb-3 bg-success bg-opacity-10 d-inline-block px-2 py-1 rounded text-center"
@@ -104,7 +103,6 @@
             }
 
             <div class="mt-auto">
-              <!-- Quantity Input Group -->
               @if (product.quantity > 0) {
                 <div
                   class="input-group mb-3 shadow-sm rounded-3 overflow-hidden"
@@ -123,7 +121,7 @@
                 </div>
               }
 
-              <!-- 🌟 الكلاس هنا: تم إضافة transition-base للزر ليكون ناعماً عند النقر أو التعطيل -->
+              <!--transition-base للزر ليكون ناعماً عند النقر أو التعطيل -->
               <button
                 class="btn w-100 d-flex justify-content-center align-items-center rounded-3 fw-bold shadow-sm transition-base"
                 [class.btn-primary]="product.quantity > 0"
@@ -141,14 +139,12 @@
               </button>
               <!-- <button class="btn btn-outline-primary w-100 mt-2" (click)="navigateToDetails(product.id)">Details</button> -->
               <div class="d-flex gap-2 mt-2">
-                <!-- زر التفاصيل -->
                 <button
                   class="btn btn-outline-primary flex-grow-1"
                   [routerLink]="['/Details', product.id]"
                 >
                   <i class="bi bi-info-circle me-1"></i> Details
                 </button>
-                <!-- 🌟 زر التعديل الجديد -->
                 <button
                   class="btn btn-outline-warning flex-grow-1"
                   [routerLink]="['/product/edit', product.id]"
@@ -156,7 +152,6 @@
                   <i class="bi bi-pencil-square"></i>
                 </button>
 
-                <!-- زر الحذف الجديد -->
                 <button
                   class="btn btn-outline-danger flex-grow-1"
                   (click)="deleteProduct(product.id)"
@@ -169,7 +164,6 @@
         </div>
       </div>
     } @empty {
-      <!-- Empty State -->
       <div class="col-12 text-center py-5 bg-white rounded-4 shadow-sm mt-3">
         <i
           class="bi bi-box-seam text-muted opacity-50"
