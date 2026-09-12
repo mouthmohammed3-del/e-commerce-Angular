@@ -32,4 +32,11 @@ getproductByCatId(catId:number):Observable<Iproduct[]>{
 addproduct(newproduct:Iproduct):Observable<Iproduct>{
   return this.http.post<Iproduct>(`${environment.basedUrl}/products`,newproduct);
 }
+deleteproduct(id: number): Observable<void> {
+  return this.http.delete<void>(`${environment.basedUrl}/products/${id}`);
+}
+
+updateproduct(id: number, updatedProduct: Iproduct): Observable<Iproduct> {
+  return this.http.put<Iproduct>(`${environment.basedUrl}/products/${id}`, updatedProduct);
+}
 }
