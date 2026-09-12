@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Iproduct } from '../models/iproduct';
 import { Observable } from 'rxjs/internal/Observable';
@@ -31,7 +31,11 @@ getproductById(id:number):Observable<Iproduct> {
 
 }
 getproductByCatId(catId:number):Observable<Iproduct[]>{
-  return this.http.get<Iproduct[]>(`${environment.basedUrl}/products?catId=${catId}`);
+
+  let myParams = new HttpParams().set('catId', catId);
+
+  return this.http.get<Iproduct[]>(`${environment.basedUrl}/products`, { params: myParams });
+  // return this.http.get<Iproduct[]>(`${environment.basedUrl}/products?catId=${catId}`);
 
 
 
