@@ -32,9 +32,14 @@ getproductById(id:number):Observable<Iproduct> {
 }
 getproductByCatId(catId:number):Observable<Iproduct[]>{
 
-  let myParams = new HttpParams().set('catId', catId);
+    // 1. إنشاء "الورقة اللاصقة" وتحديد الشرط
+    let myParams = new HttpParams().set('catId', catId);
+    // 2. إرسال الرابط نظيفاً تماماً (بدون علامات ؟ أو &)، وإرفاق الورقة في الخيارات
+    return this.http.get<Iproduct[]>(`${environment.basedUrl}/products`, {
+      params: myParams
+    });
 
-  return this.http.get<Iproduct[]>(`${environment.basedUrl}/products`, { params: myParams });
+  
   // return this.http.get<Iproduct[]>(`${environment.basedUrl}/products?catId=${catId}`);
 
 
