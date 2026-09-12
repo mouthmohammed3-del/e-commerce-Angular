@@ -1,24 +1,44 @@
 <!-- <p>add-product works!</p> -->
 
-<h1>{{newproduct | json}} </h1>
+<!-- <h1>{{newproduct | json}} </h1> -->
+<!-- <h1>{{| json}} </h1> -->
+<h1>{{ prodName.value | json }} </h1>
 
-
-<form (submit)="addnewproduct()" #addProductForm="ngForm">
-
+<form (ngSubmit)="addnewproduct()" #addProductForm="ngForm">
+  <!-- Name -->
   <!-- Name -->
   <div class="mb-3">
     <label class="form-label">Name:</label>
 
     <input
-
       type="text"
       class="form-control"
       [(ngModel)]="newproduct.name"
       name="name"
+      #prodName="ngModel"
       required
       pattern="^[A-Za-z\s]{3,15}$"
     >
-    <div>
+
+    <!-- لاحظ استخدام touched بدلاً من untouched هنا -->
+    @if (prodName.invalid && (prodName.dirty || prodName.touched)) {
+      <div class="text-danger mt-1">
+
+        <!-- Check for the specific 'required' error -->
+        @if (prodName.errors?.['required']) {
+          <small class="d-block">Name is required.</small>
+        }
+
+        <!-- Check for the specific 'pattern' error -->
+        @if (prodName.errors?.['pattern']) {
+          <small class="d-block">Name must be 3-15 characters long and contain only letters and spaces.</small>
+        }
+
+      </div>
+    }
+  </div>
+
+    <!-- <div>
       <p class="text-danger">
         <span *ngIf="addProductForm.submitted && addProductForm.controls.name?.errors?.['required']" class="text-danger">
           Name is required.
@@ -29,8 +49,7 @@
         name is required and must be 3-15 characters long and contain only letters and spaces.
 
       </p>
-    </div>
-  </div>
+    </div> -->
 
   <!-- Price -->
   <div class="mb-3">
