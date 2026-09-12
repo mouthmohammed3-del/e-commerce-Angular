@@ -4,6 +4,7 @@ import { Iproduct } from '../models/iproduct';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Icategory } from '../models/icategory';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class APiProductsService {
   updateProductsCount(newCount: number) {
     this.productsCountSubject.next(newCount);
   }
-  
+
   constructor(private http: HttpClient) { }
 
 
@@ -44,5 +45,8 @@ deleteproduct(id: number): Observable<void> {
 
 updateproduct(id: number, updatedProduct: Iproduct): Observable<Iproduct> {
   return this.http.put<Iproduct>(`${environment.basedUrl}/products/${id}`, updatedProduct);
+}
+getAllCategories(): Observable<Icategory[]> {
+  return this.http.get<Icategory[]>(`${environment.basedUrl}/categories`);
 }
 }

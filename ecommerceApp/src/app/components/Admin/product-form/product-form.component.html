@@ -1,0 +1,89 @@
+<p>product-form works!</p>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-white border-bottom-0 pt-4 pb-2 text-center">
+          <!-- 🌟 تغيير العنوان ديناميكياً: إضافة أو تعديل -->
+          <h3 class="fw-bolder text-primary mb-0">
+            <i class="bi bi-box-seam me-2"></i>
+            {{ currentProductId ? 'Edit Product' : 'Add New Product' }}
+          </h3>
+        </div>
+
+        <div class="card-body p-4 p-md-5">
+          <!--
+            تعريف الفورم: #productForm="ngForm"
+            استدعاء الدالة عند الإرسال: (ngSubmit)="saveProduct()"
+          -->
+          <form #productForm="ngForm" (ngSubmit)="saveProduct()">
+
+            <!-- حقل اسم المنتج -->
+            <div class="mb-3">
+              <label for="name" class="form-label fw-bold text-muted small text-uppercase">Product Name</label>
+              <!-- 🌟 2-way binding باستخدام [(ngModel)] -->
+              <input type="text" class="form-control form-control-lg bg-light border-0"
+                     id="name" name="name"
+                     [(ngModel)]="product.name" required #nameInput="ngModel">
+
+              <!-- رسالة خطأ بسيطة تظهر إذا ترك الحقل فارغاً -->
+              @if (nameInput.invalid && nameInput.touched) {
+                <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle"></i> Name is required</div>
+              }
+            </div>
+
+            <div class="row">
+              <!-- حقل السعر -->
+              <div class="col-md-6 mb-3">
+                <label for="price" class="form-label fw-bold text-muted small text-uppercase">Price ($)</label>
+                <input type="number" class="form-control form-control-lg bg-light border-0"
+                       id="price" name="price"
+                       [(ngModel)]="product.price" required min="1">
+              </div>
+
+              <!-- حقل الكمية -->
+              <div class="col-md-6 mb-3">
+                <label for="quantity" class="form-label fw-bold text-muted small text-uppercase">Quantity</label>
+                <input type="number" class="form-control form-control-lg bg-light border-0"
+                       id="quantity" name="quantity"
+                       [(ngModel)]="product.quantity" required min="0">
+              </div>
+            </div>
+
+            <!-- حقل القسم (Dropdown) - تنفيذ النقطة 7.b -->
+            <div class="mb-3">
+              <label for="category" class="form-label fw-bold text-muted small text-uppercase">Category</label>
+              <select class="form-select form-select-lg bg-light border-0"
+                      id="category" name="catId"
+                      [(ngModel)]="product.catId" required>
+                <option [value]="undefined" disabled selected>Select a category...</option>
+                <!-- جلب الأقسام من المصفوفة -->
+                @for (cat of categories; track cat.id) {
+                  <option [value]="cat.id">{{ cat.name }}</option>
+                }
+              </select>
+            </div>
+
+            <!-- حقل رابط الصورة -->
+            <div class="mb-4">
+              <label for="imgUrl" class="form-label fw-bold text-muted small text-uppercase">Image URL</label>
+              <input type="text" class="form-control form-control-lg bg-light border-0"
+                     id="imgUrl" name="imgUrl"
+                     [(ngModel)]="product.imgUrl" required>
+            </div>
+
+            <!-- زر الحفظ: يتم تعطيله إذا كان الفورم غير صالح (فارغ) -->
+            <!-- تتغير الكلمة بين Add و Update -->
+            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold rounded-3 shadow-sm mt-2"
+                    [disabled]="productForm.invalid">
+              {{ currentProductId ? 'Update Product' : 'Add Product' }}
+            </button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

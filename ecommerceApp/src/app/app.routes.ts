@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { UserAuthService } from './services/user-auth.service';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { ProductFormComponent } from './components/Admin/product-form/product-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -33,6 +34,10 @@ export const routes: Routes = [
       { path: 'Values', component: ValuesComponent },
     ],
   },
+  { path: 'product/add', component: ProductFormComponent },
+
+  // مسار وضع التعديل (يستقبل ID)
+  { path: 'product/edit/:id', component: ProductFormComponent },
   { path: 'Orders', component: OrderComponent },
   { path: 'add-product', component: AddProductComponent},
 
