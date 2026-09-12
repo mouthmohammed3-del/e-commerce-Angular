@@ -108,8 +108,17 @@
                 {{ product.quantity > 0 ? 'Add to Cart' : 'Sold Out' }}
               </button>
               <!-- <button class="btn btn-outline-primary w-100 mt-2" (click)="navigateToDetails(product.id)">Details</button> -->
-              <button class="btn btn-outline-primary w-100 mt-2" [routerLink]="['/Details', product.id]">Details</button>
+              <div class="d-flex gap-2 mt-2">
+                <!-- زر التفاصيل -->
+                <button class="btn btn-outline-primary flex-grow-1" [routerLink]="['/Details', product.id]">
+                  <i class="bi bi-info-circle me-1"></i> Details
+                </button>
 
+                <!-- زر الحذف الجديد -->
+                <button class="btn btn-outline-danger flex-grow-1" (click)="deleteProduct(product.id)">
+                  <i class="bi bi-trash3 me-1"></i> Delete
+                </button>
+              </div>
             </div>
 
 

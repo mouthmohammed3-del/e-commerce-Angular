@@ -19,18 +19,6 @@
       "purchaseQuantity": 1
     },
     {
-      "id": "5",
-      "name": "samsung",
-      "price": 500,
-      "quantity": 0,
-      "imgUrl": "assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg",
-      "catId": 5,
-      "purchaseQuantity": 1
-    },
-    {
-      "id": "QItj9QKxzyQ"
-    },
-    {
       "id": "GHf85V5DPc0"
     },
     {
@@ -86,14 +74,6 @@
       "imgUrl": "C:\\fakepath\\imagesstore.png",
       "catId": "1",
       "id": "geajBLvqfHI"
-    },
-    {
-      "name": "iphon13",
-      "price": 400,
-      "quantity": 3,
-      "imgUrl": "C:\\fakepath\\translated_image_ar.png",
-      "catId": "1",
-      "id": "5MVaaAhWmro"
     },
     {
       "id": "Dz-ZYJ3raRU"

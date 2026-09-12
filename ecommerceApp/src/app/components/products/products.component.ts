@@ -10,6 +10,8 @@ import { OrderComponent } from '../order/order.component';
 import { StaticProductsService } from '../../services/static-products.service';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { APiProductsService } from '../../services/api-products.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -20,9 +22,10 @@ import { APiProductsService } from '../../services/api-products.service';
     SquarePipe,RouterLink,RouterOutlet],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
+
 })
 export class ProductsComponent implements OnChanges,OnInit {
-
+  // filteredProducts: Iproduct[] = [];
   products :  Iproduct[]=[] as Iproduct[];
 
   filteredProducts!:Iproduct[];
@@ -50,6 +53,7 @@ export class ProductsComponent implements OnChanges,OnInit {
 
     this.onTotalPriceChanged=new EventEmitter<number>()
   }
+
   ngOnInit(): void {
     this._APiproductsservice.getAllproducts().subscribe({
       next:(res)=>{
@@ -63,30 +67,70 @@ export class ProductsComponent implements OnChanges,OnInit {
     })
   }
   ngOnChanges() {
-    this._APiproductsservice.getproductByCatId(this.recievedCatId).subscribe({
-      next:(res)=>{
+    // 🌟 السحر هنا: نجبر القيمة القادمة من الأب لتكون رقماً حقيقياً
+    let currentCategoryId = Number(this.recievedCatId);
 
-          this.filteredProducts = res  
-
-      },
-
-
-      error:(err)=>{console.log(err)}
-    })
-
+    if (currentCategoryId === 0) {
+      // إذا كان 0، نجلب كل المنتجات
+      this._APiproductsservice.getAllproducts().subscribe({
+        next: (res) => {
+          this.products = res;
+          this.filteredProducts = res;
+        },
+        error: (err) => console.log(err)
+      });
+    } else {
+      // إذا كان أي رقم آخر، نجلب منتجات هذا القسم فقط
+      this._APiproductsservice.getproductByCatId(currentCategoryId).subscribe({
+        next: (res) => {
+          this.filteredProducts = res;
+        },
+        error: (err) => console.log(err)
+      });
+    }
   }
+  // دالة الحذف
+  // دالة الحذف باستخدام SweetAlert2
+  deleteProduct(id: number) {
+    // 1. إظهار نافذة التأكيد الأنيقة
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33', // لون زر الحذف (أحمر)
+      cancelButtonColor: '#3085d6', // لون زر الإلغاء (أزرق)
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
 
-  filterProducts() {
-    // 1. If "All Categories" (0) is selected, show everything.
-    if (this.recievedCatId == 0) {
-      this.filteredProducts = this.products;
-    }
-    // 2. Otherwise, filter the original array and SAVE it to filteredProducts.
-    else {
-      this.filteredProducts = this.products.filter(
-        (product) => product.catId == this.recievedCatId
-      );
-    }
+      // 2. إذا ضغط المستخدم على "نعم، احذف"
+      if (result.isConfirmed) {
+
+        // إرسال طلب الحذف للسيرفر
+        this._APiproductsservice.deleteproduct(id).subscribe({
+          next: () => {
+            // تحديث المصفوفة لإخفاء المنتج من الشاشة
+            this.filteredProducts = this.filteredProducts.filter(product => product.id !== id);
+
+            // 3. إظهار رسالة نجاح صغيرة وجميلة
+            Swal.fire(
+              'Deleted!',
+              'The product has been deleted.',
+              'success'
+            );
+          },
+          error: (err) => {
+            console.error("Error deleting product:", err);
+            // إظهار رسالة خطأ إذا فشل السيرفر
+            Swal.fire(
+              'Error!',
+              'Failed to delete the product. Please try again.',
+              'error'
+            );
+          }
+        });
+      }
+    });
   }
   /////////filtter///////////
 //
