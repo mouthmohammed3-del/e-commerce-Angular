@@ -21,16 +21,15 @@ export class APiProductsService {
 
 
 getAllproducts(): Observable<Iproduct[]> {
-
+  const token = this._userAuthService.getToken(); // اللي بيرجع التوكن ده
+  const headers = token
+  ? new HttpHeaders({ 'Authorization': `Bearer ${token}` })
+    : undefined;
   return  this.http.get<Iproduct[]>(`${environment.basedUrl}/products`,{
-    headers: new HttpHeaders({
-    //  "Authorization": this._userAuthService.getToken()
-
-        })
-
+    headers:headers
   });
 
-
+    //         })
 }
 
 getproductById(id:number):Observable<Iproduct> {
