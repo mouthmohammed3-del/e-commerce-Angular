@@ -1,10 +1,11 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Iproduct } from '../models/iproduct';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Icategory } from '../models/icategory';
+import { UserAuthService } from './user-auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,19 @@ export class APiProductsService {
     this.productsCountSubject.next(newCount);
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private _userAuthService: UserAuthService) { }
 
 
 getAllproducts(): Observable<Iproduct[]> {
 
-  return  this.http.get<Iproduct[]>(`${environment.basedUrl}/products`);
+  return  this.http.get<Iproduct[]>(`${environment.basedUrl}/products`,{
+    headers: new HttpHeaders({
+    //  "Authorization": this._userAuthService.getToken()
+
+        })
+
+  });
+
 
 }
 
@@ -33,13 +41,16 @@ getproductById(id:number):Observable<Iproduct> {
 getproductByCatId(catId:number):Observable<Iproduct[]>{
 
     // 1. إنشاء "الورقة اللاصقة" وتحديد الشرط
-    let myParams = new HttpParams().set('catId', catId);
+    let myParams = new HttpParams()
+    myParams = myParams.append('catId', catId)
+    myParams = myParams.append('limit', 2)
+
     // 2. إرسال الرابط نظيفاً تماماً (بدون علامات ؟ أو &)، وإرفاق الورقة في الخيارات
     return this.http.get<Iproduct[]>(`${environment.basedUrl}/products`, {
       params: myParams
     });
 
-  
+
   // return this.http.get<Iproduct[]>(`${environment.basedUrl}/products?catId=${catId}`);
 
 

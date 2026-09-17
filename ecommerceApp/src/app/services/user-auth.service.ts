@@ -26,6 +26,10 @@ export class UserAuthService {
 getUserlogged():boolean{
  return  localStorage.getItem('token')?true:false;
 }
+
+getToken():string|null{
+  return localStorage.getItem('token');
+}
 // getAuthsubject():BehaviorSubject<boolean>{
 //
 //   return this.authSubject;
