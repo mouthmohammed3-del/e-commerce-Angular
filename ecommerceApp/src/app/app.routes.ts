@@ -38,7 +38,7 @@ export const routes: Routes = [
   { path: 'product/add', component: ProductFormComponent,canActivate:[authGuard] }, // مسار وضع الإضافة
 
   // مسار وضع التعديل (يستقبل ID)
-  { path: 'product/edit/:id', component: ProductFormComponent,canActivate:[authGuard] },
+  { path: 'product/edit/:id', loadComponent: () => import('./components/Admin/product-form/product-form.component').then((obj) => obj.ProductFormComponent),canActivate:[authGuard] },
   { path: 'Orders', component: OrderComponent },
   { path: 'add-product', component: AddProductComponent,canActivate:[authGuard] },
 
