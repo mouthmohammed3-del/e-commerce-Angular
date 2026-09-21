@@ -23,7 +23,8 @@ export const routes: Routes = [
   // },
   { path: 'login', component: LoginComponent },
   { path: 'Details/:id', component: DetailsComponent },
-  { path: 'Products', component: ProductsComponent,canActivate:[authGuard]},
+  { path: 'Products' ,
+    loadComponent: () => import('./components/products/products.component').then((obj) => obj.ProductsComponent),canActivate:[authGuard]},
   {
     path: 'About',
     component: AboutUsComponent,
