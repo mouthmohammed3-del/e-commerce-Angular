@@ -12,6 +12,7 @@ import { authGuard } from './guards/auth.guard';
 import { UserAuthService } from './services/user-auth.service';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { ProductFormComponent } from './components/Admin/product-form/product-form.component';
+import { RegisterComponent } from './components/register/register.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -23,8 +24,14 @@ export const routes: Routes = [
   // },
   { path: 'login', component: LoginComponent },
   { path: 'Details/:id', component: DetailsComponent },
-  { path: 'Products' ,
-    loadComponent: () => import('./components/products/products.component').then((obj) => obj.ProductsComponent),canActivate:[authGuard]},
+  {
+    path: 'Products',
+    loadComponent: () =>
+      import('./components/products/products.component').then(
+        (obj) => obj.ProductsComponent,
+      ),
+    canActivate: [authGuard],
+  },
   {
     path: 'About',
     component: AboutUsComponent,
@@ -35,12 +42,28 @@ export const routes: Routes = [
       { path: 'Values', component: ValuesComponent },
     ],
   },
-  { path: 'product/add', component: ProductFormComponent,canActivate:[authGuard] }, // مسار وضع الإضافة
+  {
+    path: 'product/add',
+    component: ProductFormComponent,
+    canActivate: [authGuard],
+  }, // مسار وضع الإضافة
 
   // مسار وضع التعديل (يستقبل ID)
-  { path: 'product/edit/:id', loadComponent: () => import('./components/Admin/product-form/product-form.component').then((obj) => obj.ProductFormComponent),canActivate:[authGuard] },
+  {
+    path: 'product/edit/:id',
+    loadComponent: () =>
+      import('./components/Admin/product-form/product-form.component').then(
+        (obj) => obj.ProductFormComponent,
+      ),
+    canActivate: [authGuard],
+  },
   { path: 'Orders', component: OrderComponent },
-  { path: 'add-product', component: AddProductComponent,canActivate:[authGuard] },
+  { path: 'Register', component: RegisterComponent },
+  {
+    path: 'add-product',
+    component: AddProductComponent,
+    canActivate: [authGuard],
+  },
 
   // maust by the last one
   { path: '**', component: NotFoundComponent },

@@ -1,1 +1,87 @@
-<p>register works!</p>
+<div class="card shadow-sm border-0 rounded-3" dir="rtl">
+  <div class="card-body p-4">
+    <h4 class="card-title fw-bold mb-4 text-center">إنشاء حساب جديد</h4>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- Full Name -->
+      <div class="mb-3">
+        <label for="fullName" class="form-label fw-semibold">الاسم الكامل</label>
+        <input
+          id="fullName"
+          type="text"
+          formControlName="fullName"
+          class="form-control"
+          [class.is-invalid]="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched"
+          placeholder="أدخل اسمك الكامل"
+        />
+        <div class="invalid-feedback" *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
+          <span *ngIf="registerForm.get('fullName')?.errors?.['required']">الاسم مطلوب.</span>
+          <span *ngIf="registerForm.get('fullName')?.errors?.['minlength']">الاسم قصير جدًا (3 أحرف على الأقل).</span>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label fw-semibold">البريد الإلكتروني</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="form-control"
+          [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+          placeholder="name@example.com"
+        />
+        <div class="invalid-feedback" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          <span *ngIf="registerForm.get('email')?.errors?.['required']">البريد الإلكتروني مطلوب.</span>
+          <span *ngIf="registerForm.get('email')?.errors?.['email']">صيغة البريد الإلكتروني غير صحيحة.</span>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label fw-semibold">كلمة المرور</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          placeholder="••••••••"
+        />
+        <div class="invalid-feedback" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          <span *ngIf="registerForm.get('password')?.errors?.['required']">كلمة المرور مطلوبة.</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['minlength']">يجب ألا تقل عن 6 أحرف.</span>
+        </div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label fw-semibold">تأكيد كلمة المرور</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          class="form-control"
+          [class.is-invalid]="(registerForm.get('confirmPassword')?.touched && registerForm.errors?.['passwordsMismatch']) || (registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched)"
+          placeholder="••••••••"
+        />
+        <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.errors?.['passwordsMismatch']">
+          كلمتا المرور غير متطابقتين.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-grid mt-4">
+        <button
+          type="submit"
+          class="btn btn-primary py-2 fw-semibold"
+          [disabled]="registerForm.invalid"
+        >
+          تسجيل
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
