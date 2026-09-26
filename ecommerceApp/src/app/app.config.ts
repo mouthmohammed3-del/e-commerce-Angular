@@ -4,8 +4,9 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
 import { authinterceptor } from './Interceptors/authinterceptor.service';
+import { provideStore } from '@ngrx/store';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes),provideHttpClient(withFetch(), withInterceptors([authinterceptor])) ]
+  providers: [provideRouter(routes), provideHttpClient(withFetch(), withInterceptors([authinterceptor])), provideStore()]
 };
 
