@@ -2,14 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 // import { RouterOutlet } from "../../../../node_modules/@angular/router/index";
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
-import { filter, map, Observable, Subscription  } from 'rxjs';
+import { async, filter, map, Observable, Subscription  } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink,AsyncPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -20,12 +21,12 @@ export class HomeComponent implements OnInit, OnDestroy {
    */
   counter:Observable<number>
   subscribtion! :Subscription
-  count!:number
+  // count!:number
   constructor(private _notificationService: NotificationService, private store:Store<{counter:number}>) {
     this.counter= this.store.select("counter")
-    this.counter.subscribe((newVal)=>{
-      this.count=newVal
-    })
+    // this.counter.subscribe((newVal)=>{
+    //   this.count=newVal
+    // })
 
 
   }
