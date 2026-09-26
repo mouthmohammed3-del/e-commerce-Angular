@@ -1,8 +1,3 @@
-// node_modules/rxjs/dist/esm5/internal/util/isFunction.js
-function isFunction(value) {
-  return typeof value === "function";
-}
-
 // node_modules/tslib/tslib.es6.mjs
 var extendStatics = function(d, b) {
   extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
@@ -216,6 +211,11 @@ function __asyncValues(o) {
       resolve({ value: v2, done: d });
     }, reject);
   }
+}
+
+// node_modules/rxjs/dist/esm5/internal/util/isFunction.js
+function isFunction(value) {
+  return typeof value === "function";
 }
 
 // node_modules/rxjs/dist/esm5/internal/util/createErrorClass.js
@@ -644,7 +644,6 @@ function identity(x) {
 }
 
 export {
-  isFunction,
   __extends,
   __awaiter,
   __generator,
@@ -654,6 +653,7 @@ export {
   __await,
   __asyncGenerator,
   __asyncValues,
+  isFunction,
   createErrorClass,
   UnsubscriptionError,
   arrRemove,
@@ -668,4 +668,4 @@ export {
   SafeSubscriber,
   identity
 };
-//# sourceMappingURL=chunk-XZAW2PIB.js.map
+//# sourceMappingURL=chunk-BDF3EBXO.js.map
