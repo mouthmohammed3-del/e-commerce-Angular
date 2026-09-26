@@ -1448,4 +1448,6 @@ Question: This app has multiple components expecting to share one cart, but item
 
 ---
 
-*This README is a living reference — update it as the E-commerce project grows and as new Angular concepts are learned in depth.*
+*This README is a living reference — update it as the E-commerce project grows and as new Angular concepts are learned in depth 
+no all concept in angular but a popular concepts 
+.*
