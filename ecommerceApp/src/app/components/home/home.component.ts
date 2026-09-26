@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 // import { RouterOutlet } from "../../../../node_modules/@angular/router/index";
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
-import { filter, map, Subscription  } from 'rxjs';
+import { filter, map, Observable, Subscription  } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +18,17 @@ export class HomeComponent implements OnInit, OnDestroy {
    *
 
    */
+  counter:Observable<number>
   subscribtion! :Subscription
-  constructor(private _notificationService: NotificationService) {}
+  count!:number
+  constructor(private _notificationService: NotificationService, private store:Store<{counter:number}>) {
+    this.counter= this.store.select("counter")
+    this.counter.subscribe((newVal)=>{
+      this.count=newVal
+    })
+
+
+  }
 
   ngOnInit(): void {
     //     this._notificatonSer.getnotification().subscribe((notification)=>{
