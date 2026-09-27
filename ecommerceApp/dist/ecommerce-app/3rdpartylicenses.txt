@@ -35,6 +35,16 @@ https://github.com/cartant/rxjs-etc by Nicholas Jamieson, MIT licensed. See the
 file header for details.
 
 --------------------------------------------------------------------------------
+Package: @ngx-translate/core
+License: "SEE LICENSE IN LICENSE"
+
+
+--------------------------------------------------------------------------------
+Package: @ngx-translate/http-loader
+License: "SEE LICENSE IN LICENSE"
+
+
+--------------------------------------------------------------------------------
 Package: sweetalert2
 License: "MIT"
 

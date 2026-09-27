@@ -10,7 +10,7 @@ export const counterreducer = createReducer(
 
 
 )
-const intialStatelang='en'
+const intialStatelang = (typeof window !== 'undefined' && localStorage.getItem('appLang')) ? localStorage.getItem('appLang')! : 'en';
 export const languageReducer =  createReducer(
   intialStatelang,
   on(languageAction,(state,action) => action.lang )

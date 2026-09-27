@@ -14,15 +14,13 @@
 
   <!-- Main Navigation List -->
   <ul class="nav nav-pills flex-column mb-auto gap-1">
-    <!-- Dashboard -->
     <li class="nav-item">
-      <!-- تم إضافة / قبل Home، والـ link-dark لتوحيد اللون -->
       <a
         routerLink="/Dashboard"
         class="nav-link link-dark d-flex align-items-center"
         routerLinkActive="weithe bg-success text-white"
       >
-        <i class="bi bi-speedometer2 me-3 fs-5"></i> Dashboard
+        <i class="bi bi-speedometer2 me-3 fs-5"></i> {{ 'HOME' | translate }}
       </a>
     </li>
 
@@ -33,7 +31,7 @@
         class="nav-link link-dark d-flex align-items-center justify-content-between"
         routerLinkActive="bg-success text-white"
       >
-        <div><i class="bi bi-box-seam me-3 fs-5"></i> Orders</div>
+        <div><i class="bi bi-box-seam me-3 fs-5"></i> {{ 'PRODUCTS' | translate }}</div>
 
         <!-- 🌟 السحر هنا: نعرض الشارة فقط إذا كان هناك منتجات -->
         @if (productsCount > 0) {
@@ -127,6 +125,14 @@
   </ul>
 
   <hr />
+
+  <!-- Language Switcher -->
+  <div class="mb-3 d-grid">
+    <button class="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2" (click)="toggleLanguage()">
+      <i class="bi bi-globe"></i>
+      {{ currentLang === 'en' ? 'عربي' : 'English' }}
+    </button>
+  </div>
 
   <!-- PRO FEATURE: User Profile Dropdown Pinned to Bottom -->
   <div class="dropdown">
