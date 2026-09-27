@@ -22,10 +22,10 @@ export class LanguageService {
 
   // 2. Initialize language on app startup
   initLanguage(): void {
-    const savedLang = (typeof window !== 'undefined' && localStorage.getItem('appLang')) 
-      ? localStorage.getItem('appLang')! 
+    const savedLang = (typeof window !== 'undefined' && localStorage.getItem('appLang'))
+      ? localStorage.getItem('appLang')!
       : 'en';
-      
+
     this.setLanguage(savedLang);
   }
 
@@ -35,10 +35,10 @@ export class LanguageService {
     if (typeof window !== 'undefined') {
       localStorage.setItem('appLang', lang);
     }
-    
+
     // Update ngx-translate library
     this.translate.use(lang);
-    
+
     // Update NgRx Store state globally
     this.store.dispatch(languageAction({ lang }));
 
@@ -58,7 +58,7 @@ export class LanguageService {
 
     const rtlStyleId = 'bootstrap-rtl-style';
     const head = this.document.getElementsByTagName('head')[0];
-    
+
     if (lang === 'ar') {
       // Add RTL stylesheet if it doesn't exist
       if (!this.document.getElementById(rtlStyleId)) {
