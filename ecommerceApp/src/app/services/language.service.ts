@@ -67,7 +67,7 @@ export class LanguageService {
         link.rel = 'stylesheet';
         link.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css';
         head.appendChild(link);
-      }
+      }   
     } else {
       // Remove RTL stylesheet when returning to English
       const rtlLink = this.document.getElementById(rtlStyleId);
