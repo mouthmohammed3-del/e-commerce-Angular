@@ -11,14 +11,14 @@ import { LanguageService } from './services/language.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FooterComponent, HeaderComponent, OrderComponent, RouterOutlet, AsyncPipe, TranslateModule], 
+  imports: [FooterComponent, HeaderComponent, OrderComponent, RouterOutlet, AsyncPipe, TranslateModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   title = 'ecommerceApp';
   dir: string = "ltr";
-  
+
   // 1. Inject the new Language Service
   languageService = inject(LanguageService);
 

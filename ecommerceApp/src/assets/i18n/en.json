@@ -1,7 +1,18 @@
 {
   "HOME": "Home",
+  "ORDERS": "Orders",
   "PRODUCTS": "Products",
-  "LOGIN": "Login",
+  "CUSTOMERS": "Customers",
+  "ABOUT": "About Us",
+  "ANALYTICS": "Analytics",
+  "ADD_PRODUCT": "Add Product",
   "REGISTER": "Register",
+  "LOGIN": "Login",
+  "LOGOUT": "Logout",
+  "NEW": "New",
+  "ADMIN_USER": "Admin User",
+  "STORE_SETTINGS": "Store Settings",
+  "PROFILE": "Profile",
+  "SIGN_OUT": "Sign out",
   "WELCOME": "Welcome to our E-Commerce Store"
 }
