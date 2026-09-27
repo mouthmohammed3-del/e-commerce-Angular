@@ -6,7 +6,7 @@ import { async, filter, map, Observable, Subscription  } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { AsyncPipe } from '@angular/common';
-import { increaseCounter } from '../../store/counter/counter.action';
+import { decreaseCounter, increaseCounter } from '../../store/counter/counter.action';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +33,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   increaseCounterVal(){
     this.store.dispatch(increaseCounter())
+  }
+  decreaseCounterVal(){
+    this.store.dispatch(decreaseCounter())
   }
 
   ngOnInit(): void {
