@@ -1,31 +1,20 @@
-import { HttpHandlerFn, HttpRequest } from "@angular/common/http";
-import { Observable } from "rxjs/internal/Observable";
-import { tap } from "rxjs/internal/operators/tap";
+import { HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { UserAuthService } from '../services/user-auth.service';
 
-export function authinterceptor(req:HttpRequest<any>,next:HttpHandlerFn){
-console.log(req);
+export const authinterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
+  // 1. استخدام inject للوصول إلى خدمة المصادقة
+  const userAuthService = inject(UserAuthService);
+  const token = userAuthService.getToken();
 
-return next(req);
+  // 2. إذا كان هناك توكن، ننسخ الطلب الأصلي ونضيف التوكن في الهيدر
+  if (token) {
+    const modifiedReq = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${token}`)
+    });
+    return next(modifiedReq);
+  }
 
-if(req.method === 'POST'){
-
-const modifiedreq = req.clone({
-
-  headers:req.headers.set('lang','en  ') });
-//   const modifiedreq = req.clone({
-//     headers:req.headers.set('Authorization','Bearer mytoken') });
-//   return next(modifiedreq);
-//
-//
-//
-//
-// \
-return next(modifiedreq ).pipe(
-  tap((event)=>{
-    console.log(event);
-  })
-);
-
-}
-
-}
+  // 3. إذا لم يكن هناك توكن، نمرر الطلب كما هو
+  return next(req);
+};

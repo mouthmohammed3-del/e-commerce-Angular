@@ -21,15 +21,7 @@ export class APiProductsService {
 
 
 getAllproducts(): Observable<Iproduct[]> {
-  const token = this._userAuthService.getToken(); // اللي بيرجع التوكن ده
-  const headers = token
-  ? new HttpHeaders({ 'Authorization': `Bearer ${token}` })
-    : undefined;
-  return  this.http.get<Iproduct[]>(`${environment.basedUrl}/products`,{
-    headers:headers
-  });
-
-    //         })
+  return this.http.get<Iproduct[]>(`${environment.basedUrl}/products`);
 }
 
 getproductById(id:number):Observable<Iproduct> {
