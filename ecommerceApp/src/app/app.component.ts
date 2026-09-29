@@ -1,9 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from "./components/footer/footer.component";
-import { HeaderComponent } from "./components/header/header.component";
-import { ProductsComponent} from "./components/products/products.component";
-import { OrderComponent } from './components/order/order.component';
 import { AsyncPipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from './services/language.service';
@@ -11,7 +7,7 @@ import { LanguageService } from './services/language.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FooterComponent, HeaderComponent, OrderComponent, RouterOutlet, AsyncPipe, TranslateModule],
+  imports: [RouterOutlet, AsyncPipe, TranslateModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,29 +1,7 @@
-<!-- Wrapper to ensure the layout takes the full height of the screen -->
+<!-- 
+  AppComponent is now just a wrapper!
+  The layout (Header/Footer vs Blank) is determined by the Routes (app.routes.ts) 
+-->
 <div class="d-flex flex-column min-vh-100" [dir]="dir">
-
-
-  <!-- 1. Header at the very top -->
-
-
-  <!-- 2. Middle Section (Sidebar + Main Content) -->
-  <div class="d-flex flex-grow-1 flex-nowrap">
-
-    <!-- Sidebar on the left -->
-    <app-header></app-header>
-
-
-    <!-- Main Content area takes up the remaining space -->
-    <main class="flex-grow-1 p-4 bg-light" style="overflow-x: hidden;">
-      <!-- <app-products></app-products> -->
-
-       <!-- <app-order></app-order> -->
-       <router-outlet></router-outlet>
-
-    </main>
-
-  </div>
-
-  <!-- 3. Footer at the very bottom -->
-  <app-footer></app-footer>
-
+   <router-outlet></router-outlet>
 </div>

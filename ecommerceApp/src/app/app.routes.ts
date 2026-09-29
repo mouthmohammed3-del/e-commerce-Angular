@@ -14,57 +14,61 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { ProductFormComponent } from './components/Admin/product-form/product-form.component';
 import { RegisterComponent } from './components/register/register.component';
 
+// استيراد الـ Layouts الجديدة
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
+
 export const routes: Routes = [
-  { path: '', redirectTo: 'Home', pathMatch: 'full' },
-  { path: 'Dashboard', component: HomeComponent },
-  // {
-  //   path: 'Home',
-  //   component: HomeComponent,
-  //   children: [{ path: 'Products', component: ProductsComponent }],
-  // },
-  { path: 'login', component: LoginComponent },
-  { path: 'Details/:id', component: DetailsComponent },
+  { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
+  
+  // 1. مسارات الـ Auth (صفحات لا تحتوي على Navbar و Footer)
   {
-    path: 'Products',
-    loadComponent: () =>
-      import('./components/products/products.component').then(
-        (obj) => obj.ProductsComponent,
-      ),
-    canActivate: [authGuard],
-  },
-  {
-    path: 'About',
-    component: AboutUsComponent,
+    path: '',
+    component: BlankLayoutComponent,
     children: [
-      // {path:'',component:VisionComponent},
-      { path: '', redirectTo: 'About/Vision', pathMatch: 'full' }, //
-      { path: 'Vision', component: VisionComponent },
-      { path: 'Values', component: ValuesComponent },
-    ],
-  },
-  {
-    path: 'product/add',
-    component: ProductFormComponent,
-    canActivate: [authGuard],
-  }, // مسار وضع الإضافة
-
-  // مسار وضع التعديل (يستقبل ID)
-  {
-    path: 'product/edit/:id',
-    loadComponent: () =>
-      import('./components/Admin/product-form/product-form.component').then(
-        (obj) => obj.ProductFormComponent,
-      ),
-    canActivate: [authGuard],
-  },
-  { path: 'Orders', component: OrderComponent },
-  { path: 'Register', component: RegisterComponent },
-  {
-    path: 'add-product',
-    component: AddProductComponent,
-    canActivate: [authGuard],
+      { path: 'login', component: LoginComponent },
+      { path: 'Register', component: RegisterComponent }
+    ]
   },
 
-  // maust by the last one
-  { path: '**', component: NotFoundComponent },
+  // 2. المسارات الأساسية (تحتوي على Navbar و Footer)
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      { path: 'Dashboard', component: HomeComponent },
+      { path: 'Details/:id', component: DetailsComponent },
+      {
+        path: 'Products',
+        loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'About',
+        component: AboutUsComponent,
+        children: [
+          { path: '', redirectTo: 'Vision', pathMatch: 'full' },
+          { path: 'Vision', component: VisionComponent },
+          { path: 'Values', component: ValuesComponent },
+        ],
+      },
+      { path: 'product/add', component: ProductFormComponent, canActivate: [authGuard] },
+      {
+        path: 'product/edit/:id',
+        loadComponent: () => import('./components/Admin/product-form/product-form.component').then(m => m.ProductFormComponent),
+        canActivate: [authGuard]
+      },
+      { path: 'Orders', component: OrderComponent },
+      { path: 'add-product', component: AddProductComponent, canActivate: [authGuard] }
+    ]
+  },
+
+  // 3. صفحة الخطأ توضع في مسار فارغ لأنها لا تحتاج Navbar
+  {
+    path: '**',
+    component: BlankLayoutComponent,
+    children: [
+      { path: '', component: NotFoundComponent }
+    ]
+  }
 ];
