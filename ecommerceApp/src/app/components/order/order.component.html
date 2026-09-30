@@ -12,8 +12,8 @@
 </div>
 </div>
 <div>
-  <!--this is event has a value its onTotalPriceChanged  -->
-  <app-products [recievedCatId]="selectedCatId" (onTotalPriceChanged)="CalcTotalPrice($event)"></app-products>
+  <!-- Product list component (Cart managed globally) -->
+  <app-products [recievedCatId]="selectedCatId"></app-products>
 </div>
 
 <div>

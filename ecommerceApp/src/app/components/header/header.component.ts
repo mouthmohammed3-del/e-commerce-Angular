@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { APiProductsService } from '../../services/api-products.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -18,12 +19,14 @@ import { LanguageService } from '../../services/language.service';
 })
 export class HeaderComponent implements OnInit {
   
-  productsCount: number = 0;
+  cartCount: number = 0;
+  cartTotal: number = 0;
   isUserloggedin !:boolean;
   currentLang: string = 'en';
 
-  // Inject LanguageService
+  // Inject Services
   languageService = inject(LanguageService);
+  cartService = inject(CartService);
 
   constructor(
     private userAuthser: UserAuthService,
@@ -31,17 +34,14 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._APiproductsservice.getAllproducts().subscribe({
-      next: (res) => {
-        this._APiproductsservice.updateProductsCount(res.length);
-      },
-      error: (err) => console.log(err)
+    // 1. Subscribe to Cart count
+    this.cartService.cartItems$.subscribe(items => {
+      this.cartCount = items.reduce((total, item) => total + item.quantity, 0);
     });
 
-    this._APiproductsservice.productsCount$.subscribe({
-      next: (count) => {
-        this.productsCount = count;
-      }
+    // 2. Subscribe to Cart Total Price
+    this.cartService.totalPrice$.subscribe(total => {
+      this.cartTotal = total;
     });
 
     this.userAuthser.isUserLogged$.subscribe({

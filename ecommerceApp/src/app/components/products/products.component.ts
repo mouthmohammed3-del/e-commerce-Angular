@@ -11,7 +11,7 @@ import { StaticProductsService } from '../../services/static-products.service';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { APiProductsService } from '../../services/api-products.service';
 import Swal from 'sweetalert2';
-
+import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -34,11 +34,12 @@ export class ProductsComponent implements OnChanges,OnInit {
  num : number =4;
  @Input() recievedCatId:number=0
   myData:Date=new Date()
-  //define event
-@Output() onTotalPriceChanged:EventEmitter<number>
-//private _StaticProductsService:StaticProductsService
-  constructor(private _APiproductsservice:APiProductsService, private router:Router)
-  {
+
+  constructor(
+    private _APiproductsservice: APiProductsService,
+    private router: Router,
+    public cartService: CartService // Added Cart Service
+  ) {
 
     //  this.products = this._APiproductsservice.getAllproducts()
     // this.products = [
@@ -51,7 +52,7 @@ export class ProductsComponent implements OnChanges,OnInit {
 
     this.filteredProducts = this.products;
 
-    this.onTotalPriceChanged=new EventEmitter<number>()
+
   }
 
   ngOnInit(): void {
@@ -154,32 +155,31 @@ export class ProductsComponent implements OnChanges,OnInit {
         // product.catId === categoryId: It asks a true/false question: "Does this product's category ID match the one the user selected?"
   ///////////////////////////
 //  }
-  buy(product: Iproduct){
+  buy(product: Iproduct) {
+    let count = product.purchaseQuantity ?? 1;
 
-        let count = product.purchaseQuantity ?? 1;
+    if (count > 0 && product.quantity >= count) {
+      // 1. Deduct the stock locally for UI
+      product.quantity -= count;
 
-  if (count > 0 && product.quantity >= count) {
+      // 2. Add to global Cart Service
+      this.cartService.addToCart(product, count);
 
-    // Deduct the stock
-    product.quantity -= count;
+      // 3. Show success alert
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: `Added ${count}x ${product.name} to Cart`,
+        showConfirmButton: false,
+        timer: 1500
+      });
 
-
-    // Calculate the price
-    this.totalPrice += count  * product.price;
-
-    //2- fire  event
-    this.onTotalPriceChanged.emit(this.totalPrice)
-    alert(`Bought ${count} of ${product.name} for $${this.totalPrice}`);
-
-    // Reset the input back to 1
-    product.purchaseQuantity = 1;
-
-  } else {
-    alert('Invalid quantity or not enough stock!');
+      // Reset the input back to 1
+      product.purchaseQuantity = 1;
+    } else {
+      Swal.fire('Error', 'Invalid quantity or not enough stock!', 'error');
+    }
   }
-
-
-   }
 
    navigateToDetails(id: number) {
 

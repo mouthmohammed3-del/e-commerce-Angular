@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, NgModule, ViewChild, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CartService } from '../../services/cart.service';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Icategory } from '../../models/icategory';
 import { ProductsComponent } from "../products/products.component";
@@ -14,21 +15,17 @@ import { NationalIdDatePipe } from "../../pipes/national-id-date.pipe";
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
-export class OrderComponent  implements AfterViewInit{
+export class OrderComponent implements OnInit, AfterViewInit {
 
   categories:any[];
   selectedCatId: number = 0;
-  recivedtotalPrice: number=0;
+  recivedtotalPrice: number = 0;
   num : number =4;
   MyData:Date=new Date()
 
-@ViewChild('userNameInp') myInp!:ElementRef;//non null assertion operator
+@ViewChild('userNameInp') myInp!:ElementRef;
 
-  /**
-   *
-   */
-  constructor() {
-
+  constructor(private cartService: CartService) {
     this.categories = [
       { id: 1, name: 'Laptops' },
       { id: 2, name: 'Smartphones' },
@@ -36,13 +33,15 @@ export class OrderComponent  implements AfterViewInit{
       { id: 4, name: 'Accessories' },
       { id: 5, name: 'Televisions' },
     ];
-
   }
+  
+  ngOnInit(): void {
+    this.cartService.totalPrice$.subscribe(total => {
+      this.recivedtotalPrice = total;
+    });
+  }
+
   ngAfterViewInit(): void {
     this.myInp.nativeElement.value="muath";
-  }
-
-  CalcTotalPrice(top:number){
-    this.recivedtotalPrice=top
   }
 }

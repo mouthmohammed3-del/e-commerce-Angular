@@ -24,20 +24,23 @@
       </a>
     </li>
 
-    <!-- Orders -->
+    <!-- Shopping Cart / Orders -->
     <li>
       <a
         routerLink="/Orders"
         class="nav-link link-dark d-flex align-items-center justify-content-between"
         routerLinkActive="bg-success text-white"
       >
-        <div><i class="bi bi-box-seam me-3 fs-5"></i> {{ 'ORDERS' | translate }}</div>
+        <div>
+          <i class="bi bi-cart3 me-3 fs-5"></i> 
+          {{ 'ORDERS' | translate }}
+        </div>
 
-        <!-- 🌟 السحر هنا: نعرض الشارة فقط إذا كان هناك منتجات -->
-        @if (productsCount > 0) {
-          <span class="badge bg-danger rounded-pill"
-            >{{ productsCount }} {{ 'NEW' | translate }}</span
-          >
+        @if (cartCount > 0) {
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-danger rounded-pill">{{ cartCount }}</span>
+            <span class="badge bg-success rounded-pill">{{ cartTotal | currency }}</span>
+          </div>
         }
       </a>
     </li>
