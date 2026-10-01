@@ -24,7 +24,7 @@
       </a>
     </li>
 
-    <!-- Shopping Cart / Orders -->
+    <!-- Shopping Storefront (previously called Orders) -->
     <li>
       <a
         routerLink="/Orders"
@@ -32,8 +32,22 @@
         routerLinkActive="bg-success text-white"
       >
         <div>
-          <i class="bi bi-cart3 me-3 fs-5"></i> 
+          <i class="bi bi-shop-window me-3 fs-5"></i> 
           {{ 'ORDERS' | translate }}
+        </div>
+      </a>
+    </li>
+
+    <!-- Dedicated Cart Page -->
+    <li>
+      <a
+        routerLink="/Cart"
+        class="nav-link link-dark d-flex align-items-center justify-content-between"
+        routerLinkActive="bg-success text-white"
+      >
+        <div>
+          <i class="bi bi-cart3 me-3 fs-5"></i> 
+          Cart
         </div>
 
         @if (cartCount > 0) {

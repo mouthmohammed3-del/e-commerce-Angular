@@ -59,6 +59,7 @@ export const routes: Routes = [
         canActivate: [authGuard]
       },
       { path: 'Orders', component: OrderComponent },
+      { path: 'Cart', loadComponent: () => import('./components/cart/cart.component').then(m => m.CartComponent) },
       { path: 'add-product', component: AddProductComponent, canActivate: [authGuard] }
     ]
   },
