@@ -14,5 +14,18 @@
   "STORE_SETTINGS": "إعدادات المتجر",
   "PROFILE": "الملف الشخصي",
   "SIGN_OUT": "تسجيل الخروج",
-  "WELCOME": "مرحباً بك في متجرنا الإلكتروني"
+  "WELCOME": "مرحباً بك في متجرنا الإلكتروني",
+  "FULL_NAME": "الاسم الكامل",
+  "EMAIL": "البريد الإلكتروني",
+  "PASSWORD": "كلمة المرور",
+  "CONFIRM_PASSWORD": "تأكيد كلمة المرور",
+  "NAME_REQUIRED": "الاسم مطلوب.",
+  "NAME_MINLENGTH": "الاسم قصير جدًا (3 أحرف على الأقل).",
+  "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب.",
+  "EMAIL_INVALID": "صيغة البريد الإلكتروني غير صحيحة.",
+  "PASSWORD_REQUIRED": "كلمة المرور مطلوبة.",
+  "PASSWORD_MINLENGTH": "يجب ألا تقل عن 6 أحرف.",
+  "PASSWORDS_MISMATCH": "كلمتا المرور غير متطابقتين.",
+  "CREATE_ACCOUNT": "إنشاء حساب جديد",
+  "ALREADY_HAVE_ACCOUNT": "لديك حساب بالفعل؟"
 }

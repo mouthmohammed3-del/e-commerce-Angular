@@ -1,92 +1,118 @@
-<div class="card shadow-sm border-0 rounded-3" dir="rtl">
-  <div class="card-body p-4">
-    <h4 class="card-title fw-bold mb-4 text-center">إنشاء حساب جديد</h4>
+<div class="container py-5 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+      
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+              <i class="bi bi-person-plus-fill fs-1 text-success"></i>
+            </div>
+            <h2 class="fw-bolder">{{ 'CREATE_ACCOUNT' | translate }}</h2>
+            <p class="text-muted">{{ 'WELCOME' | translate }}</p>
+          </div>
 
-    <!-- <form [formGroup]="useRegisterForm" (ngSubmit)="onSubmit()" novalidate> -->
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+            
+            <!-- Full Name -->
+            <div class="mb-3">
+              <label for="fullName" class="form-label fw-bold small text-uppercase text-muted">{{ 'FULL_NAME' | translate }}</label>
+              <div class="input-group input-group-lg">
+                <span class="input-group-text bg-light border-0"><i class="bi bi-person"></i></span>
+                <input id="fullName" 
+                       type="text" 
+                       formControlName="fullName" 
+                       class="form-control bg-light border-0"
+                       [ngClass]="{'is-invalid': formControls['fullName'].invalid && formControls['fullName'].touched}">
+              </div>
+              @if (formControls['fullName'].invalid && formControls['fullName'].touched) {
+                <div class="text-danger small mt-1">
+                  @if (formControls['fullName'].errors?.['required']) { <span>{{ 'NAME_REQUIRED' | translate }}</span> }
+                  @if (formControls['fullName'].errors?.['minlength']) { <span>{{ 'NAME_MINLENGTH' | translate }}</span> }
+                </div>
+              }
+            </div>
 
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label fw-bold small text-uppercase text-muted">{{ 'EMAIL' | translate }}</label>
+              <div class="input-group input-group-lg">
+                <span class="input-group-text bg-light border-0"><i class="bi bi-envelope"></i></span>
+                <input id="email" 
+                       type="email" 
+                       formControlName="email" 
+                       class="form-control bg-light border-0"
+                       [ngClass]="{'is-invalid': formControls['email'].invalid && formControls['email'].touched}"
+                       placeholder="name@example.com">
+              </div>
+              @if (formControls['email'].invalid && formControls['email'].touched) {
+                <div class="text-danger small mt-1">
+                  @if (formControls['email'].errors?.['required']) { <span>{{ 'EMAIL_REQUIRED' | translate }}</span> }
+                  @if (formControls['email'].errors?.['email']) { <span>{{ 'EMAIL_INVALID' | translate }}</span> }
+                </div>
+              }
+            </div>
 
-      <!-- Full Name -->
-      <div class="mb-3">
-        <label for="fullName" class="form-label fw-semibold">الاسم الكامل</label>
-        <input
-          id="fullName"
-          type="text"
-          formControlName="fullName"
-          class="form-control"
-          [class.is-invalid]="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched"
-          placeholder="أدخل اسمك الكامل"
-        />
-        <div class="invalid-feedback" *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
-          <span *ngIf="registerForm.get('fullName')?.errors?.['required']">الاسم مطلوب.</span>
-          <span *ngIf="registerForm.get('fullName')?.errors?.['minlength']">الاسم قصير جدًا (3 أحرف على الأقل).</span>
+            <div class="row">
+              <!-- Password -->
+              <div class="col-md-6 mb-4">
+                <label for="password" class="form-label fw-bold small text-uppercase text-muted">{{ 'PASSWORD' | translate }}</label>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text bg-light border-0"><i class="bi bi-lock"></i></span>
+                  <input id="password" 
+                         type="password" 
+                         formControlName="password" 
+                         class="form-control bg-light border-0"
+                         [ngClass]="{'is-invalid': formControls['password'].invalid && formControls['password'].touched}">
+                </div>
+                @if (formControls['password'].invalid && formControls['password'].touched) {
+                  <div class="text-danger small mt-1">
+                    @if (formControls['password'].errors?.['required']) { <span>{{ 'PASSWORD_REQUIRED' | translate }}</span> }
+                    @if (formControls['password'].errors?.['minlength']) { <span>{{ 'PASSWORD_MINLENGTH' | translate }}</span> }
+                  </div>
+                }
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="col-md-6 mb-4">
+                <label for="confirmPassword" class="form-label fw-bold small text-uppercase text-muted">{{ 'CONFIRM_PASSWORD' | translate }}</label>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text bg-light border-0"><i class="bi bi-shield-lock"></i></span>
+                  <input id="confirmPassword" 
+                         type="password" 
+                         formControlName="confirmPassword" 
+                         class="form-control bg-light border-0"
+                         [ngClass]="{'is-invalid': (formControls['confirmPassword'].touched && registerForm.errors?.['passwordsMismatch']) || (formControls['confirmPassword'].invalid && formControls['confirmPassword'].touched)}">
+                </div>
+                @if (formControls['confirmPassword'].touched && registerForm.errors?.['passwordsMismatch']) {
+                  <div class="text-danger small mt-1">
+                    {{ 'PASSWORDS_MISMATCH' | translate }}
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" 
+                    class="btn btn-success btn-lg w-100 fw-bold rounded-pill shadow-sm mb-4"
+                    [disabled]="registerForm.invalid || isSubmitting">
+              @if (isSubmitting) {
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              } @else {
+                {{ 'REGISTER' | translate }} <i class="bi bi-person-check ms-2"></i>
+              }
+            </button>
+
+            <!-- Login Link -->
+            <div class="text-center text-muted small">
+              {{ 'ALREADY_HAVE_ACCOUNT' | translate }} 
+              <a routerLink="/login" class="text-success fw-bold text-decoration-none">{{ 'LOGIN' | translate }}</a>
+            </div>
+
+          </form>
         </div>
       </div>
 
-      <!-- Email -->
-      <div class="mb-3">
-        <label for="email" class="form-label fw-semibold">البريد الإلكتروني</label>
-        <input
-          id="email"
-          type="email"
-          formControlName="email"
-          class="form-control"
-          [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
-          placeholder="name@example.com"
-        />
-        <div class="invalid-feedback" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-          <span *ngIf="registerForm.get('email')?.errors?.['required']">البريد الإلكتروني مطلوب.</span>
-          <span *ngIf="registerForm.get('email')?.errors?.['email']">صيغة البريد الإلكتروني غير صحيحة.</span>
-        </div>
-      </div>
-
-      <!-- Password -->
-      <div class="mb-3">
-        <label for="password" class="form-label fw-semibold">كلمة المرور</label>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          class="form-control"
-          [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
-          placeholder="••••••••"
-        />
-        <div class="invalid-feedback" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-          <span *ngIf="registerForm.get('password')?.errors?.['required']">كلمة المرور مطلوبة.</span>
-          <span *ngIf="registerForm.get('password')?.errors?.['minlength']">يجب ألا تقل عن 6 أحرف.</span>
-        </div>
-      </div>
-
-      <!-- Confirm Password -->
-      <div class="mb-3">
-        <label for="confirmPassword" class="form-label fw-semibold">تأكيد كلمة المرور</label>
-        <input
-          id="confirmPassword"
-          type="password"
-          formControlName="confirmPassword"
-          class="form-control"
-          [class.is-invalid]="(registerForm.get('confirmPassword')?.touched && registerForm.errors?.['passwordsMismatch']) || (registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched)"
-          placeholder="••••••••"
-        />
-        <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.errors?.['passwordsMismatch']">
-          كلمتا المرور غير متطابقتين.
-        </div>
-      </div>
-
-      <!-- Submit Button -->
-      <div class="d-grid mt-4">
-        <button
-          type="submit"
-          class="bg-success py-2 text-white fw-semibold"
-          [disabled]="registerForm.invalid"
-        >
-          تسجيل
-        </button>
-      </div>
-
-    </form>
+    </div>
   </div>
 </div>
-
-
-

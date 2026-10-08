@@ -14,5 +14,18 @@
   "STORE_SETTINGS": "Store Settings",
   "PROFILE": "Profile",
   "SIGN_OUT": "Sign out",
-  "WELCOME": "Welcome to our E-Commerce Store"
+  "WELCOME": "Welcome to our E-Commerce Store",
+  "FULL_NAME": "Full Name",
+  "EMAIL": "Email Address",
+  "PASSWORD": "Password",
+  "CONFIRM_PASSWORD": "Confirm Password",
+  "NAME_REQUIRED": "Name is required.",
+  "NAME_MINLENGTH": "Name must be at least 3 characters.",
+  "EMAIL_REQUIRED": "Email is required.",
+  "EMAIL_INVALID": "Please enter a valid email format.",
+  "PASSWORD_REQUIRED": "Password is required.",
+  "PASSWORD_MINLENGTH": "Password must be at least 6 characters.",
+  "PASSWORDS_MISMATCH": "Passwords do not match.",
+  "CREATE_ACCOUNT": "Create Account",
+  "ALREADY_HAVE_ACCOUNT": "Already have an account?"
 }
