@@ -1,32 +1,21 @@
+<div class="container-fluid py-3">
+  <!-- Filter Section -->
+  <div class="d-flex justify-content-between align-items-end mb-4 bg-white p-4 rounded-4 shadow-sm border-0">
+    <div class="col-md-5 col-lg-4">
+      <label for="categorySelect" class="form-label fw-bold text-muted small text-uppercase">
+        {{ 'FILTER_BY_CATEGORY' | translate }}
+      </label>
+      <select id="categorySelect" class="form-select form-select-lg shadow-sm border-0 bg-light" [(ngModel)]="selectedCatId">
+        <option [value]="0">{{ 'ALL_CATEGORIES' | translate }}</option>
+        @for (cat of categories; track cat.id) {
+          <option [value]="cat.id">{{ cat.name }}</option>
+        }
+      </select>
+    </div>
+  </div>
 
-
-<div class="d-flex justify-content-between align-items-end mb-4 bg-white p-4 rounded-4 shadow-sm border-0">
-<div class="col-md-4 col-lg-3">
-  <label for="categorySelect" class="form-label fw-bold text-muted small text-uppercase">Filter by Category</label>
-<select id="categorySelect" class="form-select form-select-lg shadow-sm border-0 "  [(ngModel)]="selectedCatId">
-  <option [value]="0">All Categories</option>
-  @for (cat of categories; track cat.id) {
-    <option [value]="cat.id">{{ cat.name }}</option>
-  }
-</select>
-</div>
-</div>
-<div>
   <!-- Product list component (Cart managed globally) -->
-  <app-products [recievedCatId]="selectedCatId"></app-products>
+  <div>
+    <app-products [recievedCatId]="selectedCatId"></app-products>
+  </div>
 </div>
-
-<div>
-
-  <h4>Today's date : {{ MyData }}</h4>
-  <h2 class="fw-bolder mb-1 text-dark">Tech Store</h2>
-  <h5 class="text-success mb-0 fw-bold">Total price: {{ recivedtotalPrice | currency }}</h5>
-
-  <!--  -->
-  <p>Year: {{ '29909011509345' | nationalIdDate:'YY' }}</p>
-<!-- Outputs: 1999 -->
-
-<p>Full Date: {{ '29909011509345' | nationalIdDate:'FullDate' }}</p>
-</div>
-
-<input type="text" #userNameInp/>

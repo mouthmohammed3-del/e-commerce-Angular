@@ -7,11 +7,12 @@ import { Icategory } from '../../models/icategory';
 import { HighlighcardDirective } from '../../Directives/highlighcard.directive';
 import { SquarePipe } from '../../pipes/square.pipe';
 import { OrderComponent } from '../order/order.component';
-import { StaticProductsService } from '../../services/static-products.service';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { APiProductsService } from '../../services/api-products.service';
 import Swal from 'sweetalert2';
 import { CartService } from '../../services/cart.service';
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -19,7 +20,7 @@ import { CartService } from '../../services/cart.service';
     CurrencyPipe,
     HighlighcardDirective,
     DatePipe,
-    SquarePipe,RouterLink,RouterOutlet],
+    SquarePipe,RouterLink,RouterOutlet,TranslateModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 

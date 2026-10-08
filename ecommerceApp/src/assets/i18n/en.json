@@ -27,5 +27,15 @@
   "PASSWORD_MINLENGTH": "Password must be at least 6 characters.",
   "PASSWORDS_MISMATCH": "Passwords do not match.",
   "CREATE_ACCOUNT": "Create Account",
-  "ALREADY_HAVE_ACCOUNT": "Already have an account?"
+  "ALREADY_HAVE_ACCOUNT": "Already have an account?",
+  "FILTER_BY_CATEGORY": "Filter by Category",
+  "ALL_CATEGORIES": "All Categories",
+  "IN_STOCK": "In Stock",
+  "OUT_OF_STOCK": "Out of Stock",
+  "ADD_TO_CART": "Add to Cart",
+  "SOLD_OUT": "Sold Out",
+  "DETAILS": "Details",
+  "DELETE": "Delete",
+  "NO_PRODUCTS_FOUND": "No products found",
+  "SELECT_ANOTHER_CATEGORY": "Please select another category."
 }

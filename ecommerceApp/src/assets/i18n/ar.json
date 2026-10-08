@@ -27,5 +27,15 @@
   "PASSWORD_MINLENGTH": "يجب ألا تقل عن 6 أحرف.",
   "PASSWORDS_MISMATCH": "كلمتا المرور غير متطابقتين.",
   "CREATE_ACCOUNT": "إنشاء حساب جديد",
-  "ALREADY_HAVE_ACCOUNT": "لديك حساب بالفعل؟"
+  "ALREADY_HAVE_ACCOUNT": "لديك حساب بالفعل؟",
+  "FILTER_BY_CATEGORY": "تصفية حسب القسم",
+  "ALL_CATEGORIES": "جميع الأقسام",
+  "IN_STOCK": "متوفر",
+  "OUT_OF_STOCK": "نفذت الكمية",
+  "ADD_TO_CART": "أضف للسلة",
+  "SOLD_OUT": "مباع",
+  "DETAILS": "التفاصيل",
+  "DELETE": "حذف",
+  "NO_PRODUCTS_FOUND": "لم يتم العثور على منتجات",
+  "SELECT_ANOTHER_CATEGORY": "الرجاء اختيار قسم آخر."
 }
