@@ -59,6 +59,10 @@ export class HeaderComponent implements OnInit {
   toggleLanguage() {
     this.languageService.toggleLanguage(this.currentLang);
   }
+
+  logout() {
+    this.userAuthser.logout();
+  }
 }
 
 
