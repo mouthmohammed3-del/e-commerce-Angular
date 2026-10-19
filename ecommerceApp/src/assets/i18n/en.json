@@ -37,5 +37,12 @@
   "DETAILS": "Details",
   "DELETE": "Delete",
   "NO_PRODUCTS_FOUND": "No products found",
-  "SELECT_ANOTHER_CATEGORY": "Please select another category."
+  "SELECT_ANOTHER_CATEGORY": "Please select another category.",
+  "SEARCH_PRODUCTS": "Search products...",
+  "SORT_BY": "Sort by",
+  "DEFAULT_SORT": "Featured / Default",
+  "PRICE_LOW_HIGH": "Price: Low to High",
+  "PRICE_HIGH_LOW": "Price: High to Low",
+  "NAME_AZ": "Name: A to Z",
+  "RESET_FILTERS": "Reset Filters"
 }

@@ -27,69 +27,70 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class ProductsComponent implements OnChanges,OnInit {
   // filteredProducts: Iproduct[] = [];
-  products :  Iproduct[]=[] as Iproduct[];
+  products: Iproduct[] = [];
+  filteredProducts: Iproduct[] = [];
+  totalPrice: number = 0;
+  num: number = 4;
+  myData: Date = new Date();
 
-  filteredProducts!:Iproduct[];
-  // selectedCatId: number = 0;
-  totalPrice: number=0;
- num : number =4;
- @Input() recievedCatId:number=0
-  myData:Date=new Date()
+  @Input() recievedCatId: number = 0;
+  @Input() searchTerm: string = '';
+  @Input() sortBy: string = 'default';
 
   constructor(
     private _APiproductsservice: APiProductsService,
     private router: Router,
-    public cartService: CartService // Added Cart Service
-  ) {
-
-    //  this.products = this._APiproductsservice.getAllproducts()
-    // this.products = [
-    //   {id:1,name:'Dell laptop 1',price:100,quantity:8,imgUrl:'assets/lee-campbell-GI6L2pkiZgQ-unsplash.jpg',catId:1,purchaseQuantity: 3},
-    //   {id:2,name:'Hp laptop',price:200,quantity:50,imgUrl:'assets/lauren-mancke-aOC7TSLb1o8-unsplash.jpg',catId:1,purchaseQuantity: 1},
-    //   {id:3,name:'Iphone',price:300,quantity:30,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:3,purchaseQuantity: 1},
-    //   {id:4,name:'oppo',price:400,quantity:40,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:4,purchaseQuantity: 1},
-    //   {id:5,name:'samsung',price:500,quantity:0,imgUrl:'assets/matt-wojtas-BVPnKddgJ8E-unsplash.jpg',catId:5,purchaseQuantity: 1},
-    // ]
-
-    this.filteredProducts = this.products;
-
-
-  }
+    public cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this._APiproductsservice.getAllproducts().subscribe({
-      next:(res)=>{
-        this.products=res
-          this.filteredProducts = this.products;
-
+      next: (res) => {
+        this.products = res;
+        this.applyFiltersAndSort();
       },
-
-
-      error:(err)=>{console.log(err)}
-    })
+      error: (err) => console.log(err)
+    });
   }
-  ngOnChanges() {
-    // 🌟 السحر هنا: نجبر القيمة القادمة من الأب لتكون رقماً حقيقياً
-    let currentCategoryId = Number(this.recievedCatId);
 
-    if (currentCategoryId === 0) {
-      // إذا كان 0، نجلب كل المنتجات
-      this._APiproductsservice.getAllproducts().subscribe({
-        next: (res) => {
-          this.products = res;
-          this.filteredProducts = res;
-        },
-        error: (err) => console.log(err)
-      });
-    } else {
-      // إذا كان أي رقم آخر، نجلب منتجات هذا القسم فقط
-      this._APiproductsservice.getproductByCatId(currentCategoryId).subscribe({
-        next: (res) => {
-          this.filteredProducts = res;
-        },
-        error: (err) => console.log(err)
-      });
+  ngOnChanges(): void {
+    if (this.products && this.products.length > 0) {
+      this.applyFiltersAndSort();
     }
+  }
+
+  applyFiltersAndSort(): void {
+    let result = [...this.products];
+
+    // 1. Filter by category
+    const currentCategoryId = Number(this.recievedCatId);
+    if (currentCategoryId > 0) {
+      result = result.filter(p => p.catId === currentCategoryId);
+    }
+
+    // 2. Filter by search query
+    if (this.searchTerm && this.searchTerm.trim() !== '') {
+      const term = this.searchTerm.toLowerCase().trim();
+      result = result.filter(p => p.name.toLowerCase().includes(term));
+    }
+
+    // 3. Apply sorting
+    switch (this.sortBy) {
+      case 'priceAsc':
+        result.sort((a, b) => a.price - b.price);
+        break;
+      case 'priceDesc':
+        result.sort((a, b) => b.price - a.price);
+        break;
+      case 'nameAsc':
+        result.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      default:
+        result.sort((a, b) => a.id - b.id);
+        break;
+    }
+
+    this.filteredProducts = result;
   }
   // دالة الحذف
   // دالة الحذف باستخدام SweetAlert2
@@ -111,11 +112,9 @@ export class ProductsComponent implements OnChanges,OnInit {
         // إرسال طلب الحذف للسيرفر
         this._APiproductsservice.deleteproduct(id).subscribe({
           next: () => {
-            // تحديث المصفوفة لإخفاء المنتج من الشاشة
-            this.filteredProducts = this.filteredProducts.filter(product => product.id !== id);
-// 🌟 2. السحر هنا: نرسل العدد الجديد للإذاعة ليتحدث الـ Header فوراً!
-          this._APiproductsservice.updateProductsCount(this.filteredProducts.length);
-            // 3. إظهار رسالة نجاح صغيرة وجميلة
+            this.products = this.products.filter(product => product.id !== id);
+            this.applyFiltersAndSort();
+            this._APiproductsservice.updateProductsCount(this.products.length);
             Swal.fire(
               'Deleted!',
               'The product has been deleted.',

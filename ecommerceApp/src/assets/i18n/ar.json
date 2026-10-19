@@ -37,5 +37,12 @@
   "DETAILS": "التفاصيل",
   "DELETE": "حذف",
   "NO_PRODUCTS_FOUND": "لم يتم العثور على منتجات",
-  "SELECT_ANOTHER_CATEGORY": "الرجاء اختيار قسم آخر."
+  "SELECT_ANOTHER_CATEGORY": "الرجاء اختيار قسم آخر.",
+  "SEARCH_PRODUCTS": "ابحث عن المنتجات...",
+  "SORT_BY": "ترتيب حسب",
+  "DEFAULT_SORT": "المميز / الافتراضي",
+  "PRICE_LOW_HIGH": "السعر: من الأقل للأعلى",
+  "PRICE_HIGH_LOW": "السعر: من الأعلى للأقل",
+  "NAME_AZ": "الاسم: أ إلى ي",
+  "RESET_FILTERS": "إعادة تعيين الفلاتر"
 }
