@@ -51,28 +51,24 @@ export class HomeComponent implements OnInit, OnDestroy {
     //
     //   );
 
-    this._notificationService.getnotification().pipe(
-
+    this.subscribtion = this._notificationService.getnotification().pipe(
       map((msg)=> `${msg} hi hi hi hi`),
-
-       filter((msg)=>msg.startsWith('mohammed'))
-
+      filter((msg)=>msg.startsWith('mohammed'))
     ).subscribe({
       next:(notification)=>{
         console.log(notification);
       },
       error:(err)=>{
         console.log(err);
-
       },
       complete:()=>{
         console.log("notification completed Successfull");
-
       },
     });
   }
   ngOnDestroy(): void {
-    this.subscribtion.unsubscribe()
-
+    if (this.subscribtion) {
+      this.subscribtion.unsubscribe();
+    }
   }
 }

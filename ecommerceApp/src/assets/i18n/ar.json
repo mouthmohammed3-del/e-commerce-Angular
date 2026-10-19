@@ -44,5 +44,12 @@
   "PRICE_LOW_HIGH": "السعر: من الأقل للأعلى",
   "PRICE_HIGH_LOW": "السعر: من الأعلى للأقل",
   "NAME_AZ": "الاسم: أ إلى ي",
-  "RESET_FILTERS": "إعادة تعيين الفلاتر"
+  "RESET_FILTERS": "إعادة تعيين الفلاتر",
+  "BACK_TO_PRODUCTS": "العودة إلى المنتجات",
+  "PREVIOUS_PRODUCT": "السابق",
+  "NEXT_PRODUCT": "التالي",
+  "QUANTITY": "الكمية",
+  "FREE_SHIPPING": "توصيل مجاني للطلبات أكثر من 50 دولار",
+  "WARRANTY": "ضمان رسمي لمدة عام",
+  "RETURNS": "إرجاع سهل خلال 30 يوم"
 }

@@ -44,5 +44,12 @@
   "PRICE_LOW_HIGH": "Price: Low to High",
   "PRICE_HIGH_LOW": "Price: High to Low",
   "NAME_AZ": "Name: A to Z",
-  "RESET_FILTERS": "Reset Filters"
+  "RESET_FILTERS": "Reset Filters",
+  "BACK_TO_PRODUCTS": "Back to Products",
+  "PREVIOUS_PRODUCT": "Previous",
+  "NEXT_PRODUCT": "Next",
+  "QUANTITY": "Quantity",
+  "FREE_SHIPPING": "Free Delivery on orders over $50",
+  "WARRANTY": "1 Year Official Warranty",
+  "RETURNS": "30-Day Hassle-Free Returns"
 }

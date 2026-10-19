@@ -1,74 +1,188 @@
-@if (product) {
-  <div class="container py-5">
-    <!-- بطاقة تفاصيل المنتج -->
-    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
-      <div class="row g-0">
+<div class="container py-4">
+  @if (product) {
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/Dashboard" class="text-decoration-none">{{ 'HOME' | translate }}</a></li>
+        <li class="breadcrumb-item"><a routerLink="/Orders" class="text-decoration-none">{{ 'ORDERS' | translate }}</a></li>
+        <li class="breadcrumb-item active text-truncate" style="max-width: 300px;" aria-current="page">{{ product.name }}</li>
+      </ol>
+    </nav>
 
-        <!-- القسم الأيسر: الصورة -->
-        <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
-          <img [src]="product.imgUrl"
-               [alt]="product.name"
-               class="img-fluid transition-base rounded"
-               style="object-fit: contain; max-height: 400px;"
-               [style.opacity]="product.quantity === 0 ? '0.4' : '1'">
+    <!-- Product Details Card -->
+    <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-4 bg-white">
+      <div class="row g-0">
+        
+        <!-- Left: Product Image -->
+        <div class="col-lg-6 bg-light d-flex align-items-center justify-content-center p-5">
+          <div class="position-relative text-center">
+            <img
+              [src]="product.imgUrl"
+              [alt]="product.name"
+              class="img-fluid rounded-4 shadow-sm"
+              style="max-height: 420px; object-fit: contain; transition: transform 0.3s ease;"
+              [style.opacity]="product.quantity === 0 ? '0.45' : '1'"
+            />
+            @if (product.quantity === 0) {
+              <div class="position-absolute top-50 start-50 translate-middle">
+                <span class="badge bg-danger fs-5 px-3 py-2 rounded-pill shadow">{{ 'SOLD_OUT' | translate }}</span>
+              </div>
+            }
+          </div>
         </div>
 
-        <!-- القسم الأيمن: البيانات -->
-        <div class="col-md-7">
-          <div class="card-body p-5">
-            <!-- العنوان ورقم التعريف -->
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <h2 class="card-title fw-bold text-dark mb-0">{{ product.name }}</h2>
-              <span class="badge bg-secondary rounded-pill px-3 py-2">ID: {{ product.id }}</span>
+        <!-- Right: Product Info & Actions -->
+        <div class="col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-between">
+          <div>
+            <!-- Header Tags -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="badge bg-primary bg-opacity-10 text-primary border border-primary px-3 py-2 rounded-pill">
+                Cat: {{ product.catId }}
+              </span>
+              <span class="badge bg-secondary bg-opacity-10 text-secondary border px-3 py-2 rounded-pill">
+                SKU: #{{ product.id }}
+              </span>
             </div>
 
-            <!-- السعر -->
-            <h3 class="text-success fw-bolder mb-4">{{ product.price | currency }}</h3>
+            <!-- Product Title -->
+            <h1 class="h2 fw-bolder text-dark mb-2">{{ product.name }}</h1>
 
-            <hr class="text-muted opacity-25 mb-4">
+            <!-- Price -->
+            <div class="d-flex align-items-baseline gap-3 mb-4">
+              <h2 class="text-primary fw-bolder mb-0">{{ product.price | currency }}</h2>
+              @if (product.price > 100) {
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2 py-1 small">
+                  Free Shipping
+                </span>
+              }
+            </div>
 
-            <!-- زر العودة -->
-            <button class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm" (click)="goBack()">
-              <i class="bi bi-arrow-left me-2"></i> Back to Products
+            <hr class="text-muted opacity-25 my-4" />
+
+            <!-- Stock Status & Quantity Progress -->
+            <div class="mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                @if (product.quantity > 0) {
+                  <span class="text-success fw-bold">
+                    <i class="bi bi-check-circle-fill me-1"></i> {{ 'IN_STOCK' | translate }} ({{ product.quantity }} available)
+                  </span>
+                } @else {
+                  <span class="text-danger fw-bold">
+                    <i class="bi bi-x-circle-fill me-1"></i> {{ 'OUT_OF_STOCK' | translate }}
+                  </span>
+                }
+              </div>
+
+              @if (product.quantity > 0) {
+                <div class="progress" style="height: 6px;">
+                  <div
+                    class="progress-bar rounded-pill"
+                    [style.width.%]="(product.quantity / 50) * 100"
+                    [class.bg-success]="product.quantity >= 10"
+                    [class.bg-warning]="product.quantity < 10"
+                  ></div>
+                </div>
+              }
+            </div>
+
+            <!-- Trust / Value Badges -->
+            <div class="row g-2 mb-4">
+              <div class="col-12 col-sm-4">
+                <div class="d-flex align-items-center gap-2 text-muted small p-2 bg-light rounded-3">
+                  <i class="bi bi-truck text-primary fs-5"></i>
+                  <span>{{ 'FREE_SHIPPING' | translate }}</span>
+                </div>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="d-flex align-items-center gap-2 text-muted small p-2 bg-light rounded-3">
+                  <i class="bi bi-shield-check text-success fs-5"></i>
+                  <span>{{ 'WARRANTY' | translate }}</span>
+                </div>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="d-flex align-items-center gap-2 text-muted small p-2 bg-light rounded-3">
+                  <i class="bi bi-arrow-repeat text-info fs-5"></i>
+                  <span>{{ 'RETURNS' | translate }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Purchase Action Block -->
+          <div>
+            @if (product.quantity > 0) {
+              <div class="d-flex align-items-center gap-3 mb-4">
+                <!-- Quantity Selector -->
+                <div class="input-group" style="width: 140px;">
+                  <button class="btn btn-outline-secondary" type="button" (click)="decrementQuantity()" [disabled]="quantity <= 1">
+                    <i class="bi bi-dash"></i>
+                  </button>
+                  <input
+                    type="text"
+                    class="form-control text-center fw-bold bg-white"
+                    [value]="quantity"
+                    readonly
+                  />
+                  <button class="btn btn-outline-secondary" type="button" (click)="incrementQuantity()" [disabled]="quantity >= product.quantity">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <button
+                  class="btn btn-primary btn-lg flex-grow-1 fw-bold rounded-3 shadow-sm d-flex align-items-center justify-content-center gap-2"
+                  (click)="addToCart()"
+                >
+                  <i class="bi bi-cart-plus fs-5"></i>
+                  {{ 'ADD_TO_CART' | translate }} ({{ product.price * quantity | currency }})
+                </button>
+              </div>
+            } @else {
+              <button class="btn btn-secondary btn-lg w-100 fw-bold rounded-3 mb-4" disabled>
+                <i class="bi bi-cart-x me-2"></i> {{ 'SOLD_OUT' | translate }}
+              </button>
+            }
+
+            <!-- Back to Products -->
+            <button class="btn btn-outline-secondary w-100 rounded-3 py-2" (click)="goBack()">
+              <i class="bi bi-arrow-left me-2"></i> {{ 'BACK_TO_PRODUCTS' | translate }}
             </button>
           </div>
         </div>
 
-
       </div>
-
     </div>
-    <div class="d-flex justify-content center gap-3 mt-4 margin" >
 
-          <!-- زر السابق: يتعطل إذا كنا في الخانة صفر -->
-          <button class="btn btn-outline-secondary"
-                  [disabled]="CurrentproductId===productIds[0]"
-                  (click)="goPrevious()">
-            <i class="bi bi-chevron-left"></i> Previous
-          </button>
+    <!-- Bottom Navigation Bar (Previous / Next) -->
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <button
+        class="btn btn-outline-primary px-4 py-2 rounded-pill d-flex align-items-center gap-2"
+        [disabled]="!hasPrevious"
+        (click)="goPrevious()"
+      >
+        <i class="bi bi-chevron-left"></i>
+        {{ 'PREVIOUS_PRODUCT' | translate }}
+      </button>
 
-          <!-- زر التالي: يتعطل إذا كنا في الخانة الأخيرة (طول المصفوفة - 1) -->
-          <button class="btn btn-outline-primary"
-                  [disabled]="CurrentproductId===productIds[productIds.length-1]"
-                  (click)="goNext()" > Next <i class="bi bi-chevron-right"></i>
-          </button>
-
-        </div>
-  </div>
-} @else {
-  <!-- spinner حالة التحميل أو الخطأ -->
-  <div class="container py-5 text-center min-vh-50 d-flex flex-column justify-content-center align-items-center">
-    <div class="spinner-border text-primary mb-3" role="status">
-      <span class="visually-hidden">Loading...</span>
+      <button
+        class="btn btn-outline-primary px-4 py-2 rounded-pill d-flex align-items-center gap-2"
+        [disabled]="!hasNext"
+        (click)="goNext()"
+      >
+        {{ 'NEXT_PRODUCT' | translate }}
+        <i class="bi bi-chevron-right"></i>
+      </button>
     </div>
-    <h4 class="text-muted fw-bold">Loading product details...</h4>
-    <p class="text-secondary">Please wait or check your connection.</p>
 
-    <button class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm" (click)="goBack()">
-      <i class="bi bi-arrow-left me-2"></i> Back to Products
-    </button>
-  </div>
-
-}
-
-
+  } @else {
+    <!-- Empty / Fallback State -->
+    <div class="text-center py-5 bg-white rounded-4 shadow-sm my-5">
+      <i class="bi bi-search text-muted opacity-50 display-1 mb-3"></i>
+      <h3 class="fw-bold text-dark">{{ 'NO_PRODUCTS_FOUND' | translate }}</h3>
+      <p class="text-muted mb-4">The requested product could not be found or loaded.</p>
+      <button class="btn btn-primary px-4 py-2 rounded-pill" (click)="goBack()">
+        <i class="bi bi-arrow-left me-2"></i> {{ 'BACK_TO_PRODUCTS' | translate }}
+      </button>
+    </div>
+  }
+</div>
