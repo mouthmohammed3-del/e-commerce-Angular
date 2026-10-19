@@ -2,17 +2,18 @@ import { Component, OnInit, inject } from '@angular/core';
 import { StaticProductsService } from '../../services/static-products.service';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { UserAuthService } from '../../services/user-auth.service';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule, NgIf, AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { APiProductsService } from '../../services/api-products.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
 import { CartService } from '../../services/cart.service';
+import { SidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NgIf, CommonModule, TranslateModule],
+  imports: [RouterLink, RouterLinkActive, NgIf, CommonModule, TranslateModule, AsyncPipe],
   providers:[],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
   // Inject Services
   languageService = inject(LanguageService);
   cartService = inject(CartService);
+  sidebarService = inject(SidebarService);
 
   constructor(
     private userAuthser: UserAuthService,

@@ -1,16 +1,30 @@
-<div
-  class="d-flex flex-column flex-shrink-0 p-3 bg-white border-end shadow-sm vh-100 position-sticky top-0"
-  style="width: 280px"
+<aside
+  class="sidebar-wrapper d-flex flex-column flex-shrink-0 bg-white border-end shadow-sm vh-100 position-sticky top-0"
+  [class.closed]="sidebarService.isClosed$ | async"
 >
-  <!-- Brand / Logo Area (تم إزالة routerLinkActive من هنا لكي لا يتلون الشعار بالأخضر) -->
-  <a
-    routerLink="/"
-    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
-  >
-    <i class="bi bi-shop fs-4 text-primary me-2"></i>
-    <span class="fs-4 fw-bolder text-primary">ShopPro</span>
-  </a>
-  <hr />
+  <div class="sidebar-inner d-flex flex-column h-100 p-3">
+    <!-- Brand / Logo Area & Close Button -->
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <a
+        routerLink="/"
+        class="d-flex align-items-center link-dark text-decoration-none"
+      >
+        <i class="bi bi-shop fs-4 text-primary me-2"></i>
+        <span class="fs-4 fw-bolder text-primary">ShopPro</span>
+      </a>
+
+      <!-- Quick Close Sidebar Button -->
+      <button 
+        type="button" 
+        class="btn btn-sm btn-light border-0 rounded-circle close-btn d-flex align-items-center justify-content-center p-2 text-muted shadow-none" 
+        style="width: 32px; height: 32px;"
+        (click)="sidebarService.close()"
+        title="Close Sidebar"
+      >
+        <i class="bi bi-x-lg fs-6"></i>
+      </button>
+    </div>
+    <hr class="mt-0" />
 
   <!-- Main Navigation List -->
   <ul class="nav nav-pills flex-column mb-auto gap-1">
@@ -177,4 +191,5 @@
       </li>
     </ul>
   </div>
-</div>
+  </div>
+</aside>
