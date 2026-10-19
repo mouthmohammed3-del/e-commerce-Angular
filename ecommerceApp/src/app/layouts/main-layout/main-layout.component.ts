@@ -33,8 +33,6 @@ import { TranslateModule } from '@ngx-translate/core';
             >
               <i class="bi fs-5" [ngClass]="(sidebarService.isClosed$ | async) ? 'bi-layout-sidebar-inset' : 'bi-layout-sidebar'"></i>
             </button>
-            
-            <h5 class="mb-0 fw-bold text-dark d-none d-sm-block">ShopPro</h5>
           </div>
 
           <!-- Topbar Language Switcher -->
