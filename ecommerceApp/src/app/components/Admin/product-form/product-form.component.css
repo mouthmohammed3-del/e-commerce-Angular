@@ -1,0 +1,19 @@
+.back-btn-pill {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  cursor: pointer;
+}
+
+.back-btn-pill:hover {
+  background-color: #ffffff !important;
+  color: #0d6efd !important;
+  transform: translateX(-4px);
+  box-shadow: 0 6px 16px -2px rgba(13, 110, 253, 0.18) !important;
+  border-color: #cbd5e1;
+}
+
+:host-context([dir="rtl"]) .back-btn-pill:hover,
+[dir="rtl"] .back-btn-pill:hover {
+  transform: translateX(4px);
+}
