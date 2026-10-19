@@ -1,40 +1,89 @@
+/* Sidebar Wrapper */
 .sidebar-wrapper {
   width: 280px;
   min-width: 280px;
   max-width: 280px;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               min-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.25s ease-in-out,
-              visibility 0.25s ease-in-out,
-              padding 0.3s ease;
+              max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1040;
 }
 
-.sidebar-wrapper.closed {
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
+/* Collapsed Mini-Sidebar Mode (Icons remain visible) */
+.sidebar-wrapper.collapsed {
+  width: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+}
+
+.sidebar-wrapper.collapsed .sidebar-text {
+  display: none !important;
+}
+
+.sidebar-wrapper.collapsed .sidebar-header {
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+  justify-content: center !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  border-inline-end-width: 0 !important;
 }
 
-.sidebar-inner {
-  width: 280px;
-  min-width: 280px;
+.sidebar-wrapper.collapsed .nav-link {
+  justify-content: center !important;
+  padding: 0.65rem 0.5rem !important;
 }
 
-.close-btn {
+.sidebar-wrapper.collapsed .sidebar-icon {
+  margin: 0 !important;
+}
+
+.sidebar-wrapper.collapsed .user-profile-link {
+  justify-content: center !important;
+}
+
+.sidebar-wrapper.collapsed .user-profile-link::after {
+  display: none !important; /* Hide dropdown arrow in mini mode */
+}
+
+.sidebar-wrapper.collapsed .collapsed-badge-dot {
+  display: block !important;
+}
+
+.collapsed-badge-dot {
+  display: none;
+}
+
+/* Toggle / Close Sidebar Button inside Sidebar */
+.sidebar-toggle-btn {
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
   transition: all 0.2s ease;
 }
 
-.close-btn:hover {
-  background-color: #f1f5f9;
-  transform: scale(1.1);
+.sidebar-toggle-btn:hover {
+  background-color: #e2e8f0;
+  color: #0d6efd !important;
+  transform: scale(1.08);
+}
+
+/* Smooth Nav Item transitions */
+.nav-link {
+  border-radius: 0.65rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.nav-link:hover:not(.active) {
+  background-color: #f8fafc;
+}
+
+/* RTL Arrow direction */
+:host-context([dir="rtl"]) .sidebar-toggle-btn i,
+[dir="rtl"] .sidebar-toggle-btn i {
+  display: inline-block;
+  transform: rotate(180deg);
 }
