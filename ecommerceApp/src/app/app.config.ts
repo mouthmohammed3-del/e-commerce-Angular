@@ -4,6 +4,8 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { HttpClient, provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
 import { authinterceptor } from './Interceptors/authinterceptor.service';
+import { loadingInterceptor } from './Interceptors/loading.interceptor';
+import { errorInterceptor } from './Interceptors/error.interceptor';
 import { provideStore } from '@ngrx/store';
 import { counterreducer, languageReducer } from './store/counter/counter.reducer';
 
@@ -18,7 +20,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), 
-    provideHttpClient(withFetch(), withInterceptors([authinterceptor])),
+    provideHttpClient(
+      withFetch(), 
+      withInterceptors([authinterceptor, loadingInterceptor, errorInterceptor])
+    ),
     provideStore({
       counter: counterreducer,
       language: languageReducer

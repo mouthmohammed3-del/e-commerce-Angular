@@ -8,7 +8,7 @@ import { VisionComponent } from './components/vision/vision.component';
 import { ValuesComponent } from './components/values/values.component';
 import { DetailsComponent } from './components/details/details.component';
 import { LoginComponent } from './components/login/login.component';
-import { authGuard } from './guards/auth.guard';
+import { authGuard, guestGuard } from './guards/auth.guard';
 import { UserAuthService } from './services/user-auth.service';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { ProductFormComponent } from './components/Admin/product-form/product-form.component';
@@ -26,8 +26,8 @@ export const routes: Routes = [
     path: '',
     component: BlankLayoutComponent,
     children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'Register', component: RegisterComponent }
+      { path: 'login', component: LoginComponent, canActivate: [guestGuard] },
+      { path: 'Register', component: RegisterComponent, canActivate: [guestGuard] }
     ]
   },
 

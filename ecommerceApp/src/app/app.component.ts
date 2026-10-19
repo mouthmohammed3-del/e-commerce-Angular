@@ -4,10 +4,12 @@ import { AsyncPipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from './services/language.service';
 
+import { SpinnerComponent } from './components/spinner/spinner.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AsyncPipe, TranslateModule],
+  imports: [RouterOutlet, AsyncPipe, TranslateModule, SpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
