@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { Iproduct } from '../../../models/iproduct';
 import { Icategory } from '../../../models/icategory';
 import { APiProductsService } from '../../../services/api-products.service';
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.css'
 })
@@ -25,7 +26,8 @@ export class ProductFormComponent implements OnInit {
     private fb: FormBuilder,
     private _APiproductsservice: APiProductsService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private location: Location
   ) {
     // 1. Initialize Reactive Form with powerful Validators
     this.productForm = this.fb.group({
@@ -71,6 +73,10 @@ export class ProductFormComponent implements OnInit {
   // Easy getter for form controls to use in HTML
   get formControls() {
     return this.productForm.controls;
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   saveProduct() {
