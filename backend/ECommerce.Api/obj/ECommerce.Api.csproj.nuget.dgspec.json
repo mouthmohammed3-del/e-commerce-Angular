@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Angular\\Angular Demos Web Assuit\\e-commerce-Angular\\ecommerceApp\\backend\\ECommerce.Api\\ECommerce.Api.csproj": {}
+  },
+  "projects": {
+    "C:\\Angular\\Angular Demos Web Assuit\\e-commerce-Angular\\ecommerceApp\\backend\\ECommerce.Api\\ECommerce.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Angular\\Angular Demos Web Assuit\\e-commerce-Angular\\ecommerceApp\\backend\\ECommerce.Api\\ECommerce.Api.csproj",
+        "projectName": "ECommerce.Api",
+        "projectPath": "C:\\Angular\\Angular Demos Web Assuit\\e-commerce-Angular\\ecommerceApp\\backend\\ECommerce.Api\\ECommerce.Api.csproj",
+        "packagesPath": "C:\\Users\\jaber\\.nuget\\packages\\",
+        "outputPath": "C:\\Angular\\Angular Demos Web Assuit\\e-commerce-Angular\\ecommerceApp\\backend\\ECommerce.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jaber\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Users\\jaber\\.nuget\\packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
